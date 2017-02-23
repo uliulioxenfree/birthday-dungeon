@@ -11,9 +11,13 @@
 
 <tw-story></tw-story>
 
-<tw-storydata name="Jared&#x27;s Birthday Dungeon" startnode="163" creator="Twine" creator-version="2.1.0" ifid="369C1ECA-B407-407D-B348-4BBFFD2528C3" format="Harlowe" format-version="1.2.3" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">html.demon {
+<tw-storydata name="Jared&#x27;s Birthday Dungeon" startnode="163" creator="Twine" creator-version="2.1.0" ifid="369C1ECA-B407-407D-B348-4BBFFD2528C3" format="Harlowe" format-version="1.2.3" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">body {
+	font-family: 'Alegreya', serif;
+}
+
+html.demon {
 	background-color: #b30000;
-  color: #ffffff;
+  	color: #ffffff;
 }
 
 html.demon tw-link {
@@ -85,53 +89,7 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 .visited /* all visited links */
 { color: #1919e6; }
 .visited:hover /* all visited hover links */
-{ color: #197fe6; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">
+{ color: #197fe6; }</style><script role="script" id="twine-user-script" type="text/twine-javascript">
 
 
 
@@ -1134,7 +1092,7 @@ Your pigeons&#x27; health is now (print: $ally&#x27;s health)%.
 (if: $ally&#x27;s health &gt; 100)[(set: $ally&#x27;s health to 100)]\
 Their health is now (print: $ally&#x27;s health)%.
 
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="133" name="Achievements" tags="achievements hide-sidebar" position="375,83">(css: &quot;font-size: 80%;&quot;)[(if: $achievements contains &quot;Survive five minutes&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="133" name="Achievements" tags="achievements hide-sidebar" position="375,75">(css: &quot;font-size: 80%;&quot;)[(if: $achievements contains &quot;Survive five minutes&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
 $x[Survive five minutes.]
 (if: $achievements contains &quot;Survive an hour&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
 $x[Survive an hour.]
@@ -1286,7 +1244,7 @@ When you wake you find a note thanking you for your donation and a key placed on
 [[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="155" name="Blessing of sacrifice" tags="blessings" position="1961,170">You may sacrifice keys to reset your health, sanity, energy and satiety.
 
 (set: $blessings to it + (array: &quot;sacrifice&quot;))\
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="156" name="Debug-startup" tags="debug-startup" position="495,80">(display: &quot;Startup&quot;)\
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="156" name="Debug-startup" tags="debug-startup" position="492,78">(display: &quot;Startup&quot;)\
 (display: &quot;init&quot;)\
 (set: $drink to 3)\
 (set: $scanner to 3)\
@@ -1324,7 +1282,7 @@ When you wake you find a note thanking you for your donation and a key placed on
 </tw-passagedata><tw-passagedata pid="161" name="Eat his hand" tags="" position="649,1676">You override his objections. After all, this might be the last time you get to do something like this.
 
 (set: $satiety to it + 5)\
-[[Delicious.|exit]]</tw-passagedata><tw-passagedata pid="162" name="You have **$keys** keys]&lt;keyCount|" tags="" position="0,236">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="163" name="trueInit" tags="" position="625,579">(if: (saved-games:) contains &quot;Slot A&quot;)[Save file found.
+[[Delicious.|exit]]</tw-passagedata><tw-passagedata pid="162" name="You have **$keys** keys]&lt;keyCount|" tags="" position="0,236">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="163" name="trueInit" tags="hide-sidebar achievements" position="625,579">(if: (saved-games:) contains &quot;Slot A&quot;)[Save file found.
 
 (link: &quot;Restore progress&quot;)[(load-game: &quot;Slot A&quot;)]
 [[Erase progress and start again|init]]]
