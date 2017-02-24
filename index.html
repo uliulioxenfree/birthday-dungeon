@@ -96,7 +96,9 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 { color: #1919e6; }
 .visited:hover /* all visited hover links */
 { color: #197fe6; }
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
 
 
 
@@ -324,7 +326,7 @@ $turns minutes]]\
 
 You are now tired *and* injured.(set: $energy to it - 5)(set: $HP to it - ($monster&#x27;s damage))
 
-[[Limp on.|Main]]]</tw-passagedata><tw-passagedata pid="7" name="Pat" tags="" position="756,1063">(if: (random: 1,100) &gt;= 80)[There is a moment of soft cuddly contentment. This is followed by several moments of searing pain as its claws rend your flesh.
+[[Limp on.|Main]]]</tw-passagedata><tw-passagedata pid="7" name="Pat" tags="" position="756,1063">(if: (random: 1,100) &lt;= 80)[There is a moment of soft cuddly contentment. This is followed by several moments of searing pain as its claws rend your flesh.
 (set: $HP to it - $monster&#x27;s damage)(set: $sanity to it + 5)\
 
 [[Onwards!|Main]]]\
@@ -1552,7 +1554,7 @@ A tiny tentacled demon buzzes towards you. It asks you to sacrifice (print: $dra
 (if: $drainType is &quot;satiety&quot;)[(set: $satiety to it - $drainValue)]\
 It takes (print: $drainValue) (print: $drainType) instead.
 
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="211" name="Inform it that its master is no more" tags="" position="1220,2343.6666666666665">Having learned that you ate its master, the demon decides to leave you alone.
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="211" name="Inform it that its master is no more" tags="" position="1220,2343">Having learned that you ate its master, the demon decides to leave you alone.
 
 You wonder what it will do now.
 
