@@ -15,6 +15,13 @@
 
 tw-passage {
 	font-family: 'IM Fell English', serif;
+  	font-size: 115%;
+}
+
+tw-story {
+  width: 75%;
+  margin-left: 20%;
+  margin-right: 12%;
 }
 
 html.demon {
@@ -98,9 +105,10 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 { color: #1919e6; }
 .visited:hover /* all visited hover links */
 { color: #197fe6; }
-
-
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
+
+
 
 
 
@@ -195,7 +203,8 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 (set: $ghostFriend to 0)\
 (set: $slimeEnemy to 0)\
 (set: $spikeAwareness to 0)\
-(set: $keys to 0)\
+(if: $inherit is true and $keys &gt;=1)[(set: $inherit to false)(set: $keys to 1)]\
+(else:)[(set: $keys to 0)(set: $inherit to false)]\
 (set: $inventory to (array: &quot;pocket link&quot;))\
 (set: $blessings to (array: &quot;&quot;))\
 (set: $blessingsCount to 0)\
@@ -217,14 +226,6 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 (set: $cards to (array: &quot;ghost&quot;, &quot;poop&quot;, &quot;badFood&quot;, &quot;watermelon&quot;, &quot;energy&quot;, &quot;satan&quot;, &quot;potion&quot;, &quot;altar&quot;, &quot;presents&quot;, &quot;spikes&quot;, &quot;hunger&quot;, &quot;slime&quot;, &quot;monsters1&quot;, &quot;monsters1&quot;, &quot;doors&quot;, &quot;treasureChest&quot;))\
 (if: $achievements contains &quot;Escape&quot; and not ($achievements contains &quot;Find the sub-dungeon&quot;))[(set: $cards to it + (array: &quot;descentNote&quot;))]\
 [[Descend.|Main]]</tw-passagedata><tw-passagedata pid="2" name="Main" tags="" position="630,812">(display: &quot;updates&quot;)\
-(if: $energy &lt;1)[(go-to: &quot;You are dead&quot;)]\
-(if: $HP &lt;1)[(go-to: &quot;You are dead&quot;)]\
-(if: $satiety &lt;1)[(go-to: &quot;You are dead&quot;)]\
-(if: $sanity &lt;1)[(go-to: &quot;You are insane&quot;)]\
-(if: $HP &gt;$statMax)[(go-to: &quot;HPMax&quot;)]\
-(if: $sanity &gt;$statMax)[(go-to: &quot;sanityMax&quot;)]\
-(if: $energy &gt;$statMax)[(go-to: &quot;energyMax&quot;)]\
-(if: $satiety &gt;$statMax)[(go-to: &quot;satietyMax&quot;)]\
 (if: $cards&#x27;s 1st is $card)[(set: $card to $cards&#x27;s 2nd)]\
 	(else:)[(set: $card to $cards&#x27;s 1st)]\
 	(display: $card)
@@ -310,9 +311,7 @@ $turns minutes]]\
 (replace: ?Sanity)[??]\
 (replace: ?Energy)[??]\
 (replace: ?Satiety)[??]]]</tw-passagedata><tw-passagedata pid="4" name="Startup" tags="startup" position="125,83">(set: $achievements to (array: &quot;&quot;))\
-(set: $achievementsOld to $achievements)\
-(set: $highScore to false)\
-(set: $lowScore to false)</tw-passagedata><tw-passagedata pid="5" name="ghost" tags="" position="943,444">A spectral presence wafts down the passageway towards you. Blood drips from its mouth.
+(set: $achievementsOld to $achievements)</tw-passagedata><tw-passagedata pid="5" name="ghost" tags="" position="943,444">A spectral presence wafts down the passageway towards you. Blood drips from its mouth.
 
 [[Run|runghost]]
 (if: $ghostFriend &gt;=1)[[[Stand your ground]]
@@ -502,19 +501,13 @@ By the time it finishes you feel healthier, though also horrified.
 (set: $delayExecute to &quot;(set: $HP to 30)(set: $energy to 30)(set: $satiety to 30)(set: $sanity to 30)&quot;)\
 (if: not ($achievements contains &quot;Come back from the dead&quot;))[(set: $achievements to it + (array: &quot;Come back from the dead&quot;))]\
 [[Give up your ankh to return to the dungeon|Main]]]\
-(else:)[(link:&quot;Save progress&quot;)[(if:(save-game:&quot;Slot A&quot;))[&#x27;&#x27;Progress saved!&#x27;&#x27;(set: $loaded to true)]\
-(else: )[Sorry, I couldn&#x27;t save your game.]]
-[[View achievements|Achievements]]
-[[Begin again|init]]]</tw-passagedata><tw-passagedata pid="36" name="You are insane" tags="" position="1,1249">(if: $loaded is true)[(go-to: &quot;init&quot;)]\
+(else:)[(display: &quot;GameOver&quot;)]</tw-passagedata><tw-passagedata pid="36" name="You are insane" tags="" position="1,1249">(if: $loaded is true)[(go-to: &quot;init&quot;)]\
 Your body may still be alive, but whatever you once understood yourself to be is gone.
 
 Happy birthday.
 
 (set: $ended to true)\
-(link:&quot;Save progress&quot;)[(if:(save-game:&quot;Slot A&quot;))[&#x27;&#x27;Progress saved!&#x27;&#x27;(set: $loaded to true)]\
-(else: )[Sorry, I couldn&#x27;t save your game.]]
-[[View achievements|Achievements]]
-[[Begin again|init]]</tw-passagedata><tw-passagedata pid="37" name="peckishCure" tags="" position="1690,585">A damp mime lurks in the corner of the room. He gestures for you to come closer.
+(display: &quot;GameOver&quot;)</tw-passagedata><tw-passagedata pid="37" name="peckishCure" tags="" position="1690,585">A damp mime lurks in the corner of the room. He gestures for you to come closer.
 
 &quot;I know that look in your eyes&quot; he whispers. &quot;The hunger. I can take it away.&quot;
 
@@ -634,7 +627,7 @@ You barely manage to  wrench your arm out from between the cushions before the c
 (set: $energy to it + 5)\
 [[Time to move on|Main]]]</tw-passagedata><tw-passagedata pid="55" name="hunger" tags="" position="981,668">(set:$delayExecute to &quot;(set: $satiety to it - (3 * $hunger))&quot;)\
 The room smells like cookies. [[Your stomach rumbles|Main]]</tw-passagedata><tw-passagedata pid="56" name="dice" tags="" position="488,933">(set: $delayExecute to false)\
-(set: $diceCooldown to 2)\
+(set: $diceCooldown to (random: 1,2))\
 (display: &quot;Main&quot;)</tw-passagedata><tw-passagedata pid="57" name="Step on it anyway" tags="" position="1054,911">Your feet hurt terribly.
 
 (if: not ($achievements contains &quot;Make a bad decision&quot;))[(set: $achievements to it + (array: &quot;Make a bad decision&quot;))]\
@@ -762,21 +755,22 @@ It is titled *A Treatise on the Treachery of Crabs.* The handwriting is neat but
 (if: $blessings contains &quot;endurance&quot; and $energy &lt; 1)[(set: $energy to 1)]\
 (if: $blessings contains &quot;endurance&quot; and $energy is 1)[(set: $HP to it - 1)(set: $sanity to it - 1)]\
 (if: $blessings contains &quot;mindfulness&quot; and $sanity &lt; 33)[(set: $sanity to it + (random:1,3))]\
-(if: $turns is 15)[(set: $cards to it + (array: &quot;photocopier&quot;, &quot;crabs&quot;))]\
-(if: $turns is 20)[(set: $cards to it + (array: &quot;Tea Ceremony&quot;,&quot;monsters2&quot;))]\
-(if: $turns is 30)[(set: $cards to it + (array: &quot;Glimpse&quot;))]\
-(if: $turns is 50)[(set: $cards to it + (array: &quot;exit&quot;))]\
-(if: $turns is 40)[(set: $cards to it + (array: &quot;Skeleton&quot;))]\
+(if: $turns is 10)[(set: $cards to it + (array: &quot;photocopier&quot;, &quot;crabs&quot;))]\
+(if: $turns is 18)[(set: $cards to it + (array: &quot;Tea Ceremony&quot;,&quot;monsters2&quot;))]\
+(if: $turns is 26)[(set: $cards to it + (array: &quot;Glimpse&quot;))]\
+(if: $turns is 32)[(set: $cards to it + (array: &quot;Skeleton&quot;))]\
+(if: $turns is 45)[(set: $cards to it + (array: &quot;exit&quot;, &quot;mushrooms&quot;))]\
 (if: $turns is 60)[(set: $cards to it + (array: &quot;demon&quot;))]\
-(if: $turns is 80)[(set: $cards to it + (array: &quot;Gorgon&quot;))]\
-(if: $turns is 70)[(set: $cards to it + (array: &quot;mushrooms&quot;))]\
+(if: $turns is 75)[(set: $cards to it + (array: &quot;Gorgon&quot;))]\
 (if: $sanity &lt;25 and not ($cards contains &quot;debugMenagerie&quot;))[(set: $cards to it + (array: &quot;debugMenagerie&quot;, &quot;debugMenagerie&quot;))]\
 (if: $keys &gt;=5 and $sergeGuide is 1 and (random: 1,4) is 4)[(set: $cards to it + (array: &quot;sergeGuide&quot;))]\
 (if: $sanity &gt;=25)[(set: $cards to it - (array: &quot;debugMenagerie&quot;))]\
 (if: (random:1,175) is 1)[(set: $cards to it + (array: &quot;pirates&quot;))]\
 (if: (random:1,175) is 2)[(set: $cards to it + (array: &quot;keyFind&quot;))]\
 (if: (random:1,175) is 3)[(set: $cards to it + (array: &quot;jargo&quot;))]\
-(if: (random:1,50) is 4)[(set: $cards to it + (array: &quot;ethicsTome&quot;))]\
+(if: (random:1,175) is 4)[(set: $cards to it + (array: &quot;bibleopoly&quot;))]\
+(if: (random:1,175) is 5)[(set: $cards to it + (array: &quot;Painting&quot;))]\
+(if: (random:1,50) is 1)[(set: $cards to it + (array: &quot;ethicsTome&quot;))]\
 (if: $keys &gt;=1 and (random:1,150) is 150 and not ($inventory contains &quot;headband&quot;))[(set: $cards to it + (array: &quot;headband&quot;))]\
 (if: $blessings contains &quot;discovery&quot; and (random: 1,10) is 10 and not ($cards contains &quot;Blessed&quot;))[(set: $cards to it + (array: &quot;Blessed&quot;))]\
 (if: $energy &lt;25 and not ($cards contains &quot;couch&quot;))[(set: $cards to it + (array: &quot;couch&quot;))]\
@@ -792,6 +786,14 @@ It is titled *A Treatise on the Treachery of Crabs.* The handwriting is neat but
 (set: $achievementsOld to $achievements)\
 ]\
 (if: $diceCooldown &gt; 0)[(set: $diceCooldown to it - 1)]\
+(if: $energy &lt;1)[(go-to: &quot;You are dead&quot;)]\
+(if: $HP &lt;1)[(go-to: &quot;You are dead&quot;)]\
+(if: $satiety &lt;1)[(go-to: &quot;You are dead&quot;)]\
+(if: $sanity &lt;1)[(go-to: &quot;You are insane&quot;)]\
+(if: $HP &gt;$statMax)[(go-to: &quot;HPMax&quot;)]\
+(if: $sanity &gt;$statMax)[(go-to: &quot;sanityMax&quot;)]\
+(if: $energy &gt;$statMax)[(go-to: &quot;energyMax&quot;)]\
+(if: $satiety &gt;$statMax)[(go-to: &quot;satietyMax&quot;)]\
 (set: $cards to (shuffled: ...$cards))</tw-passagedata><tw-passagedata pid="83" name="photocopier" tags="" position="898,1764">(if: $sanity &lt; 20)[This room contains a photocopier.
 
 *Careful! Your sanity is getting perilously low*
@@ -882,7 +884,7 @@ You pocket the key. This could come in handy later.
 (if: not ($achievements contains &quot;Eat a God&quot;))[(set: $achievements to it + (array: &quot;Eat a God&quot;))]\
 [[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="94" name="blessings2" tags="blessings" position="1586,169">Choose a blessing!
 
-(set: $availableBlessings to (shuffled:... (array: &quot;fitness&quot;, &quot;mindfulness&quot;, &quot;gluttony&quot;, &quot;blessedness&quot;, &quot;digestion&quot;, &quot;discovery&quot;, &quot;laughter&quot;, &quot;endurance&quot;, &quot;sacrifice&quot;, &quot;snacking&quot;, &quot;speed&quot;, &quot;opening&quot;, &quot;acquisition&quot;, &quot;boundaries&quot;) - $blessings))\
+(set: $availableBlessings to (shuffled:... (array: &quot;fitness&quot;, &quot;mindfulness&quot;, &quot;gluttony&quot;, &quot;blessedness&quot;, &quot;digestion&quot;, &quot;discovery&quot;, &quot;laughter&quot;, &quot;endurance&quot;, &quot;sacrifice&quot;, &quot;snacking&quot;, &quot;speed&quot;, &quot;opening&quot;, &quot;acquisition&quot;, &quot;boundaries&quot;, &quot;inheritance&quot;) - $blessings))\
 [[Blessing of (print: $availableBlessings&#x27;s 1st)]]
 [[Blessing of (print: $availableBlessings&#x27;s 2nd)]]
 [[Blessing of (print: $availableBlessings&#x27;s 3rd)]]
@@ -933,7 +935,7 @@ A treasure chest squats on the dungeon floor. It is decorated with a carving of 
 (set: $sanity to it - 5)\
 (if: $testIslandKey is 0)[(if: $inventory contains &quot;crabNote&quot;)[[[Show him the treatise on the treachery of crabs]]
 ]\
-(if: $inventory contains &quot;photocopies&quot;)[[[Show him your photocopies of the treatise]]]
+(if: $inventory contains &quot;photocopies&quot;)[[[Show him your photocopies of the treatise]]]\
 ]\
 [[Leave this place|Main]]]</tw-passagedata><tw-passagedata pid="104" name="Talk to the hungry-looking one" tags="" position="2157,504">He has a plump waistline but is raving about watermelons and an unsateable hunger. Listening to him makes your stomach growl.
 
@@ -981,16 +983,12 @@ There is an unattended snack stand next to the exit.
 
 [[Go up]]
 [[Go down]]]\
-(else:)[(if: $loaded is true)[(go-to: &quot;init&quot;)]\
-You climb up the stairs and out of the birthday dungeon. You are hurt, traumatised, and hungry. You will never completely recover.
+(else:)[You climb up the stairs and out of the birthday dungeon. You are hurt, traumatised, and hungry. You will never completely recover.
 
 Happy birthday!
 
 (if: not ($achievements contains &quot;Escape&quot;))[(set: $achievements to it + (array: &quot;Escape&quot;))]\
-(link:&quot;Save progress&quot;)[(set: $loaded to true)(if:(save-game:&quot;Slot A&quot;))[&#x27;&#x27;Progress saved!&#x27;&#x27;]\
-(else: )[Sorry, I couldn&#x27;t save your game.]]
-[[View achievements|Achievements]]
-[[Begin again|init]]]
+(display: &quot;GameOver&quot;)]
 </tw-passagedata><tw-passagedata pid="113" name="Blessing of digestion" tags="blessings" position="1462,294">Your satiety only sometimes degenerates.
 
 (set: $blessings to it + (array: &quot;digestion&quot;))\
@@ -1037,7 +1035,7 @@ It&#x27;s discomfiting.
 (set: $satiety to it + 30)\
 (set: $slimeEnemy to 1)\
 (set: $s to (color: #818181))\
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="121" name="Skeleton" tags="" position="1508,1055">Wesley J Skelliman walks down the corridor towards you. He is wearing neither clothes nor flesh. (either: &quot;Tinsel is wrapped around his ribs.&quot;, &quot;He is, however, wearing a sombrero atop his skull.&quot;, &quot;He is holding a religious text.&quot;) 
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="121" name="Skeleton" tags="" position="1508,1055">Wesley J Skelliman walks down the corridor towards you. He is wearing neither clothes nor flesh. (either: &quot;Tinsel is wrapped around his ribs.&quot;, &quot;He is, however, wearing a sombrero atop his skull.&quot;, &quot;He is holding a religious text.&quot;, &quot;A fez is perhched atop his skull.&quot;) 
 
 His bones gleam whitely in the candlelight. He is terrifying.
 
@@ -1122,6 +1120,8 @@ $x[Survive an hour.]
 $x[Survive two hours.]
 (if: $achievements contains &quot;Survive six hours&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
 $x[Survive six hours.]
+(if: $achievements contains &quot;Fail spectacularly&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
+$x[Fail spectacularly.]
 (if: $achievements contains &quot;Escape&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
 $x[Escape.]
 (if: $achievements contains &quot;Abandon all hope&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
@@ -1350,12 +1350,13 @@ And for a brief moment the entire stone dungeon seems nothing more than a house 
 (if: $inklings &gt;=19)[[Go down the stairs]]]</tw-passagedata><tw-passagedata pid="171" name="catFriend" tags="" position="161,2401">A cat - it looks like the one you befriended earlier - walks across the room and drops a dead mouse at your feet.
 
 [[Yay! A cute cat to pat!]]
-[[Ew. A dead mouse.]]
-[[Yum. A dead mouse.]]</tw-passagedata><tw-passagedata pid="172" name="Yum. A dead mouse." tags="" position="276,2434">Are you really doing this?
+(if: $hunger &gt; 1)[[[Yum. A dead mouse.]]
+]\
+[[Ew. A dead mouse.]]</tw-passagedata><tw-passagedata pid="172" name="Yum. A dead mouse." tags="" position="276,2434">Are you really doing this?
 
 Yes. You are.
 
-It is a small yet nauseating meal.
+It is a small and nauseating meal.
 
 (set: $satiety to it + 10)(set: $sanity to it - 10)\
 [[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="173" name="Yay! A cute cat to pat!" tags="" position="48,2441">It happily allows you to pat it for a full minute before stalking back into the dungeon.
@@ -1502,9 +1503,7 @@ But these problems are to be tackled later. You are here. You have made it. And 
 
 Happy birthday.
 
-(link:&quot;Save progress&quot;)[(set: $loaded to true)(if:(save-game:&quot;Slot A&quot;))[&#x27;&#x27;Progress saved!&#x27;&#x27;]\
-(else: )[Sorry, I couldn&#x27;t save your game.]]
-[[View achievements|Achievements]]</tw-passagedata><tw-passagedata pid="202" name="Wave the arrow threateningly" tags="" position="2668,492">The dragon backs off immediately.
+(display: &quot;GameOver&quot;)</tw-passagedata><tw-passagedata pid="202" name="Wave the arrow threateningly" tags="" position="2668,492">The dragon backs off immediately.
 
 [[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="203" name="Pull the arrow from its chest" tags="" position="2548,589">(if: (random: 1, 100) &lt;= (10 + $fleeBonus))[Any hope you might have harboured that the dragon would be grateful instantly evaporates. It roars; it bellows; it flaps its wings and tries to pursue you down the corridor.
 
@@ -1562,7 +1561,50 @@ It takes (print: $drainValue) (print: $drainType) instead.
 
 You wonder what it will do now.
 
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="212" name="[Inform it that its master is no more" tags="" position="1090,2464">Double-click this passage to edit it.</tw-passagedata></tw-storydata>
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="212" name="[Inform it that its master is no more" tags="" position="1090,2464">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="213" name="GameOver" tags="" position="51,1360.9181540951067">(if: $turns &lt; 10 and not ($achievements contains &quot;Fail spectacularly&quot;))[(set: $achievements to it + (array: &quot;Fail spectacularly&quot;))]\
+(if: ($achievements is not $achievementsOld))[(color: orange)[*&#x27;&#x27;Achievement achieved: (print: $achievements - $achievementsOld).&#x27;&#x27;*]
+
+(set: $achievementsOld to $achievements)\
+]\
+(link:&quot;Save progress&quot;)[(if:(save-game:&quot;Slot A&quot;))[&#x27;&#x27;Progress saved!&#x27;&#x27;]\
+(else: )[Sorry, I couldn&#x27;t save your game.]]
+[[View achievements|Achievements]]
+[[Begin again|init]]</tw-passagedata><tw-passagedata pid="214" name="bibleopoly" tags="" position="2451.4908440506383,1176.5545212119875">You enter a cozy den. The embers of a fire glow within a stone hearth. A half-played game of *DungeonDeity-Opoly* lies abandoned on a small wooden table.
+
+(set: $cards to it - (array: &quot;bibleopoly&quot;))\
+[[Read the instructions.]]
+[[Feed the pieces to the flames.]]</tw-passagedata><tw-passagedata pid="215" name="Read the instructions." tags="" position="2384.4908440506383,1320.5545212119875">They are written in an ideographic language you don&#x27;t understand. 
+
+The instruction manual is decorated with horrific images. The very first page depicts a tentacled deity feasting on worshipers. Surely this game can&#x27;t be intended for children?
+
+(set: $sanity to it - 20)\
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="216" name="Feed the pieces to the flames." tags="" position="2520.4908440506383,1320.5545212119875">(if: not ($inventory contains &quot;godStains&quot;))[You feed the pieces to the flames, one at a time.
+
+They burn merrily.
+
+You experience the curious sensation of some great cosmic eye shifting to focus on you alone.
+
+(set: $cards to it + (array:&quot;furiousGod&quot;))\
+[[Onwards!|Main]]]\
+(else:)[The rekindled flames warm your hands nicely.
+
+(set: $sanity to it + 5)\
+[[Onwards!|Main]]]</tw-passagedata><tw-passagedata pid="217" name="Painting" tags="" position="2680,992.6999826882109">A painting is hung on the wall here. It is titled *Flowers and Towers and Rolling.* It is composed of a bewildering array of shapes. It is the kind of painting you imagine might shuffle your stats if you touch it.
+
+(set: $cards to it - (array: &quot;Painting&quot;))\
+[[Touch the painting.]]
+[[Move on.|Main]]</tw-passagedata><tw-passagedata pid="218" name="Touch the painting." tags="" position="2680,1142.6999826882109">(set: $shuffler to (shuffled: ...(array: $HP, $sanity, $energy, $satiety)))\
+(set: $HP to 1st of $shuffler)\
+(set: $sanity to 2nd of $shuffler)\
+(set: $energy to 3rd of $shuffler)\
+(set: $satiety to 4th of $shuffler)\
+You were right!
+
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="219" name="Blessing of inheritance" tags="" position="1962.109042423975,300.5">Your successor will enter the dungeon with 1 key if you have at least 1 key at the end of this run.
+
+(set: $blessings to it + (array: &quot;inheritance&quot;))\
+(set: $inherit to true)\
+[[Onwards!|Main]]</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">"use strict";function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var _slicedToArray=function(){function e(e,t){var n=[],r=!0,o=!1,i=void 0;try{for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(e){o=!0,i=e}finally{try{!r&&s.return&&s.return()}finally{if(o)throw i}}return n}return function(t,n){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol?"symbol":typeof e};!function(){/**
  * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
