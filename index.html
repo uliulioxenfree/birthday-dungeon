@@ -11,11 +11,12 @@
 
 <tw-story></tw-story>
 
-<tw-storydata name="Jared&#x27;s Birthday Dungeon" startnode="163" creator="Twine" creator-version="2.1.0" ifid="369C1ECA-B407-407D-B348-4BBFFD2528C3" format="Harlowe" format-version="1.2.3" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css?family=IM+Fell+English');
+<tw-storydata name="Jared&#x27;s Birthday Dungeon" startnode="163" creator="Twine" creator-version="2.1.0" ifid="369C1ECA-B407-407D-B348-4BBFFD2528C3" format="Harlowe" format-version="1.2.3" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css?family=PT+Serif');
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica+SC');
 
 tw-passage {
-	font-family: 'IM Fell English', serif;
   	font-size: 115%;
+    font-family: 'PT Serif', serif;
 }
 
 tw-story {
@@ -52,6 +53,7 @@ tw-passage tw-include[title="Sidebar"] {
 	text-overflow: clip;
   text-decoration: none;
   color: #818181;
+  font-family: 'IM Fell DW Pica SC', serif;
 }
 
 tw-sidebar tw-icon.undo {
@@ -107,7 +109,9 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 { color: #197fe6; }
 
 
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
 
 
 
@@ -230,7 +234,7 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 (set: $cards to (array: &quot;ghost&quot;, &quot;poop&quot;, &quot;badFood&quot;, &quot;watermelon&quot;, &quot;energy&quot;, &quot;satan&quot;, &quot;potion&quot;, &quot;altar&quot;, &quot;presents&quot;, &quot;spikes&quot;, &quot;hunger&quot;, &quot;slime&quot;, &quot;monsters1&quot;, &quot;monsters1&quot;, &quot;doors&quot;, &quot;treasureChest&quot;))\
 (if: $achievements contains &quot;Escape&quot; and not ($achievements contains &quot;Find the sub-dungeon&quot;))[(set: $cards to it + (array: &quot;descentNote&quot;))]\
 [[Descend.|Main]]
-(if: $achievements is not (array: &quot;&quot;))[[[View your predecessors&#x27; achievements first.|Achievements]]]</tw-passagedata><tw-passagedata pid="2" name="Main" tags="" position="630,812">(display: &quot;updates&quot;)\
+(if: $achievements is not (array: &quot;&quot;))[[[Read of your predecessors&#x27; achievements.|Achievements]]]</tw-passagedata><tw-passagedata pid="2" name="Main" tags="" position="630,812">(display: &quot;updates&quot;)\
 (if: $cards&#x27;s 1st is $card)[(set: $card to $cards&#x27;s 2nd)]\
 	(else:)[(set: $card to $cards&#x27;s 1st)]\
 	(display: $card)
@@ -529,7 +533,7 @@ He pauses. A droplet of water falls from his nose and splashes into the puddle a
 
 (if: not ($achievements contains &quot;Refuse a cure&quot;))[(set: $achievements to it + (array: &quot;Refuse a cure&quot;))]\
 (set: $satiety to it + 5)\
-[[Nothing is left for you here.|Main]]</tw-passagedata><tw-passagedata pid="40" name="presents" tags="" position="387,1665">(either: &quot;A sweaty talktative man&quot;, &quot;An errant philosopher&quot;, &quot;A wayward illustrator&quot;, &quot;A medically-trained wizard&quot;, &quot;A cat with well-conditioned fur&quot;, &quot;A bearded photographer&quot;) offers you a choice of birthday presents.
+[[Nothing is left for you here.|Main]]</tw-passagedata><tw-passagedata pid="40" name="presents" tags="" position="387,1665">(either: &quot;A sweaty talktative man&quot;, &quot;An errant philosopher&quot;, &quot;A wayward illustrator&quot;, &quot;A medically-trained wizard&quot;, &quot;A cat with sleek and well-conditioned fur&quot;, &quot;A bearded photographer&quot;) offers you a choice of birthday presents.
 
 (set: $gift to (array: &quot;[[The gift of health]]&quot;,&quot;[[The gift of lucidity]]&quot;,&quot;[[The gift of energy]]&quot;,&quot;[[The gift of chocolate]]&quot;,
 &quot;[[Average juice]]&quot;,&quot;[[Dynamite]]&quot;,&quot;[[A well-rounded gift]]&quot;,&quot;[[Breadcrumbs]]&quot;))\
@@ -781,7 +785,7 @@ It is titled *A Treatise on the Treachery of Crabs.* The handwriting is neat but
 (if: $energy &lt;25 and not ($cards contains &quot;couch&quot;))[(set: $cards to it + (array: &quot;couch&quot;))]\
 (if: $energy &gt;= 25)[(set: $cards to it - (array: &quot;couch&quot;))]\
 (if: $turns &gt;= $nextBlessing)[(set: $cards to it + (array: &quot;blessings&quot;))]\
-(if: $turns &gt; 5 and not ($achievements contains &quot;Survive five minutes&quot;))[(set: $achievements to it + (array: &quot;Survive five minutes&quot;))]\
+(if: $turns &gt; 10 and not ($achievements contains &quot;Survive ten minutes&quot;))[(set: $achievements to it + (array: &quot;Survive ten minutes&quot;))]\
 (if: $turns &gt; 60 and not ($achievements contains &quot;Survive an hour&quot;))[(set: $achievements to it + (array: &quot;Survive an hour&quot;))]\
 (if: $turns &gt; 180 and not ($achievements contains &quot;Survive three hours&quot;))[(set: $achievements to it + (array: &quot;Survive three hours&quot;))]\
 (if: $turns &gt; 180 and not ($achievements contains &quot;Survive three hours&quot;))[(set: $achievements to it + (array: &quot;Survive three hours&quot;))]\
@@ -1117,8 +1121,8 @@ Your pigeons&#x27; health is now (print: $ally&#x27;s health)%.
 (if: $ally&#x27;s health &gt; 100)[(set: $ally&#x27;s health to 100)]\
 Their health is now (print: $ally&#x27;s health)%.
 
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="133" name="Achievements" tags="achievements hide-sidebar" position="375,75">(css: &quot;font-size: 80%;&quot;)[(if: $achievements contains &quot;Survive five minutes&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
-$x[Survive five minutes.]
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="133" name="Achievements" tags="achievements hide-sidebar" position="375,75">(css: &quot;font-size: 80%;&quot;)[(if: $achievements contains &quot;Survive ten minutes&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
+$x[Survive ten minutes.]
 (if: $achievements contains &quot;Survive an hour&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
 $x[Survive an hour.]
 (if: $achievements contains &quot;Survive two hours&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
