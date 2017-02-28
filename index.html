@@ -1412,9 +1412,8 @@ And for a brief moment the entire stone dungeon seems nothing more than a house 
 [[Yay! A cute cat!]]
 (if: $hunger &gt; 1)[[[Yum. A dead mouse.]]
 ]\
-(if: $ally&#x27;s type is &quot;pigeons&quot;)[[[Introduce your pigeons to the cat]]
-]\
-[[Ew. A dead mouse.]]]</tw-passagedata><tw-passagedata pid="172" name="Yum. A dead mouse." tags="" position="276,2434">Are you really doing this?
+[[Ew. A dead mouse.]]
+(if: $ally&#x27;s type is &quot;pigeons&quot;)[[[Introduce your pigeons to the cat]]]]</tw-passagedata><tw-passagedata pid="172" name="Yum. A dead mouse." tags="" position="276,2434">Are you really doing this?
 
 Yes. You are.
 
@@ -1501,7 +1500,7 @@ It is compelling enough that for a moment the thought of these demons (in the ai
 [[Leave them there|Main]]</tw-passagedata><tw-passagedata pid="190" name="Put them on" tags="" position="2370,338">They look great!
 
 (set: $sanity to it + 5)\
-[[Move on, in style|Main]]</tw-passagedata><tw-passagedata pid="191" name="InspectHealth" tags="" position="2660,2007">The graffiti chronicles a series of clashes between humans and strange otherworldly creatures with too many tentacles and too few eyes. The illustrations depict heads skewered on polies and limbs removed from bodies. You flinch sympathetically.
+[[Walk on, in style.|Main]]</tw-passagedata><tw-passagedata pid="191" name="InspectHealth" tags="" position="2660,2007">The graffiti chronicles a series of clashes between humans and strange otherworldly creatures with too many tentacles and too few eyes. The illustrations depict heads skewered on polies and limbs removed from bodies. You flinch sympathetically.
 
 Or is there a more direct cause? There is blood on your hands. How is this possible?
 
@@ -1603,7 +1602,7 @@ You feel more confused than ever.(set: $sanity to 1)
 [[Onwards!|Main]]]</tw-passagedata><tw-passagedata pid="208" name="demon" tags="" position="1090,2314">(set: $drainValue to (random: 15,30))\
 (set: $playerVariables to (shuffled: ...(array: &quot;health&quot;, &quot;sanity&quot;, &quot;energy&quot;, &quot;satiety&quot;)))\
 (set: $drainType to 1st of $playerVariables)\
-A tiny tentacled demon buzzes towards you. It asks you to sacrifice (print: $drainValue) (print: $drainType).
+A (either: &quot;tiny&quot;, &quot;fuzzy&quot;, &quot;huge&quot;, &quot;enormous&quot;, &quot;medium-sized&quot;, &quot;glowering&quot;, &quot;purple-skinned&quot;, &quot;tentacled&quot;) demon buzzes towards you. It asks you to sacrifice (print: $drainValue) (print: $drainType).
 
 [[Comply.]]
 [[Refuse.]]
@@ -1666,7 +1665,9 @@ You were right!
 
 (set: $blessings to it + (array: &quot;inheritance&quot;))\
 (set: $inherit to true)\
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="219" name="savedInit" tags="" position="740,697">(load-game: &quot;Slot A&quot;)\</tw-passagedata><tw-passagedata pid="220" name="saveGame2" tags="" position="1328,532">*Your game has been saved.*
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="219" name="savedInit" tags="" position="740,697">(load-game: &quot;Slot A&quot;)\</tw-passagedata><tw-passagedata pid="220" name="saveGame2" tags="" position="1328,532">Something vast and unknowable has noted your progress.
+
+*Your game has been saved.*
 
 (set: $saveTimer to 20)\
 (save-game:&quot;Slot A&quot;)\
@@ -1674,12 +1675,13 @@ You were right!
 
 (set: $cards to it - (array: &quot;saveGame&quot;))\
 (set: $s to (color: #818181))\
-[[Oh?|saveGame2]]</tw-passagedata><tw-passagedata pid="222" name="Introduce your pigeons to the cat" tags="" position="291,2557">For a brief moment they eye each other with hostility. And then each attacks the other.
+[[Oh?|saveGame2]]</tw-passagedata><tw-passagedata pid="222" name="Introduce your pigeons to the cat" tags="" position="291,2557">For a brief moment they eye each other with hostility. And then they seem to reach a mutual decision to each attack the other.
 
 After a brief yet decisive battle the cat saunters off with one of the pigeons in its mouth. The survivors promptly fly away.
 
 (set: $ally&#x27;s type to &quot;none&quot;)\
 (set: $catKey to 1)\
+(set: $sanity to it - 5)\
 (if: not ($achievements contains &quot;Kill your darlings&quot;))[(set: $achievements to it + (array: &quot;Kill your darlings&quot;))]\
 [[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="223" name="Eat the candles" tags="" position="976,1215">Surely no sane person would do this. But they look buttery and wholesome, and they smell so sweet. 
 
