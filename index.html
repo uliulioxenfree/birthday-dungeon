@@ -122,7 +122,11 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 
 
 
+
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
+
 
 
 
@@ -247,6 +251,7 @@ A nearby sign lists the accomplishments of those who have entered the dungeon be
 (set: $descension to 0)\
 (set: $saveTimer to 20)\
 (set: $catKey to 0)\
+(set: $strangeBrew to 0)\
 (if: $achievements is not (array: &quot;&quot;))[(save-game:&quot;Slot A&quot;)]\
 (set: $ally to (datamap: &quot;type&quot;, &quot;none&quot;, &quot;health&quot;, 0))\
 (set: $cards to (array: &quot;ghost&quot;, &quot;poop&quot;, &quot;badFood&quot;, &quot;watermelon&quot;, &quot;energy&quot;, &quot;satan&quot;, &quot;potion&quot;, &quot;altar&quot;, &quot;presents&quot;, &quot;spikes&quot;, &quot;hunger&quot;, &quot;slime&quot;, &quot;monsters1&quot;, &quot;monsters1&quot;, &quot;doors&quot;, &quot;treasureChest&quot;))\
@@ -260,7 +265,7 @@ A nearby sign lists the accomplishments of those who have entered the dungeon be
 (if: $dice is 1 and $diceCooldown is 0 and (random: 1, 5) &gt;= 4 and not ($card is &quot;Blessed&quot;))[
 	*Or you could [[reroll the dice|dice]]*
 	]\
-(if: $trash &gt;0 and not($card is &quot;couch&quot;) and not($card is &quot;peckishCure&quot;) and not($card is &quot;debugMenagerie&quot;) and not ($card is &quot;exit&quot;) and not ($card is &quot;findKey&quot;) and not ($card is &quot;pirates&quot;) and not ($card is &quot;ethicsTome&quot;) and not ($card is &quot;blessings&quot;) and not ($card is &quot;saveGame&quot;) and not ($card is &quot;keyFind&quot;))[*Or you could [[remove this location from the dungeon]]*
+(if: $trash &gt;0 and not($card is &quot;couch&quot;) and not($card is &quot;peckishCure&quot;) and not($card is &quot;debugMenagerie&quot;) and not ($card is &quot;exit&quot;) and not ($card is &quot;findKey&quot;) and not ($card is &quot;pirates&quot;) and not ($card is &quot;ethicsTome&quot;) and not ($card is &quot;blessings&quot;) and not ($card is &quot;saveGame&quot;) and not ($card is &quot;keyFind&quot;) and not ($card is &quot;hole&quot;))[*Or you could [[remove this location from the dungeon]]*
 	]\
 (if: $blessings contains &quot;laughter&quot;)[*Or you could [[laugh crazily at the whole situation until it goes away|lol]]*
 	]\
@@ -338,7 +343,8 @@ $turns minutes]]\
 (if: $mushroomCooldown &gt; 0)[(replace: ?Health)[??]\
 (replace: ?Sanity)[??]\
 (replace: ?Energy)[??]\
-(replace: ?Satiety)[??]]]</tw-passagedata><tw-passagedata pid="4" name="Startup" tags="startup" position="125,83">(set: $inherit to false)\
+(replace: ?Satiety)[??]]\
+(if: $strangeBrew is 1)[(live: 1.8s)[(set: $HP to it + 1)(replace: ?Health)[(color: lime)[$HP]]]]]</tw-passagedata><tw-passagedata pid="4" name="Startup" tags="startup" position="125,83">(set: $inherit to false)\
 (set: $achievements to (array: &quot;&quot;))\
 (set: $achievementsOld to $achievements)\
 (set: $achievementCount to 0)</tw-passagedata><tw-passagedata pid="5" name="ghost" tags="" position="943,444">A spectral presence wafts down the passageway towards you. Blood drips from its mouth.
@@ -462,7 +468,7 @@ You slam the book shut. What have you unleashed?
 [(print: $potions&#x27;s 1st)]&lt;potion1|
 [(print: $potions&#x27;s 2nd)]&lt;potion2|
 [(print: $potions&#x27;s 3rd)]&lt;potion3|
-(if: (random: 1,100) &lt;=15)[(set: $replacePotion to (either: &quot;?potion1&quot;, &quot;?potion2&quot;, &quot;?potion3&quot;))(replace: $replacePotion)[[[The sleek grey one]]]]\
+(if: (random: 1,100) &lt;=18)[(set: $replacePotion to (either: &quot;?potion1&quot;, &quot;?potion2&quot;, &quot;?potion3&quot;))(replace: $replacePotion)[[[The sleek grey one]]]]\
 [[All of them, mixed together|All of them]]</tw-passagedata><tw-passagedata pid="24" name="The sparkling red one" tags="" position="12,515">You feel healthier. Your cuts and grazes have partly healed. Even your eyesight seems sharper than usual. What&#x27;s in this stuff?
 
 (set: $HP to it + 25)\
@@ -481,7 +487,7 @@ You slam the book shut. What have you unleashed?
 (else:)[[[Pray]]
 [[Spit on the statue]]
 ]\
-(if: $sanity &lt; 30)[[[Eat the candles]]
+(if: $hunger &gt; 1)[[[Eat the candles]]
 ]\
 (if: $hunger &gt; 2)[[[Eat the statue|EatStatue]]
 ]\
@@ -559,7 +565,7 @@ He pauses. A droplet of water falls from his nose and splashes into the puddle a
 
 (if: not ($achievements contains &quot;Refuse a cure&quot;))[(set: $achievements to it + (array: &quot;Refuse a cure&quot;))]\
 (set: $satiety to it + 5)\
-[[Nothing is left for you here.|Main]]</tw-passagedata><tw-passagedata pid="40" name="presents" tags="" position="387,1665">(either: &quot;A sweaty talktative man&quot;, &quot;An errant philosopher&quot;, &quot;A wayward illustrator&quot;, &quot;A medically-trained wizard&quot;, &quot;A cat with sleek and well-conditioned fur&quot;, &quot;A bearded photographer&quot;) offers you a choice of birthday presents.
+[[Nothing is left for you here.|Main]]</tw-passagedata><tw-passagedata pid="40" name="presents" tags="" position="387,1665">(either: &quot;A sweaty talktative man&quot;, &quot;An errant philosopher&quot;, &quot;A wayward illustrator&quot;, &quot;A medically-trained wizard&quot;, &quot;A cat with sleek and well-conditioned fur&quot;, &quot;A bearded photographer&quot;, &quot;An avid dictaphone-wielding poet&quot;) offers you a choice of birthday presents.
 
 (set: $gift to (array: &quot;[[The gift of health]]&quot;,&quot;[[The gift of lucidity]]&quot;,&quot;[[The gift of energy]]&quot;,&quot;[[The gift of chocolate]]&quot;,
 &quot;[[Average juice]]&quot;,&quot;[[A well-rounded gift]]&quot;,&quot;[[Breadcrumbs]]&quot;))\
@@ -738,7 +744,7 @@ But when you place your hands in your pocket your fingers curl around a metallic
 [[Oh well.|Main]]]</tw-passagedata><tw-passagedata pid="71" name="monster" tags="" position="1342,1061">[[Run]] *((if: ($monster&#x27;s fleeChance + $fleeBonus) &gt; 100)[100](elseif: $monster&#x27;s fleeChance + $fleeBonus &lt; 0)[0](else:)[(round: ($monster&#x27;s fleeChance + $fleeBonus))]% chance of success)*
 (if: $monster contains &quot;bonus&quot;)[[[(print: $monster&#x27;s bonus)]]
 ]\
-(if: $hunger &gt; 1)[[[Feast|EatMonster]]
+(if: $hunger &gt; 2)[[[Feast|EatMonster]]
 ]\
 (if: not($monster contains &quot;wait&quot;))[[[Curl up in a ball on the floor|Wait, defenceless]]
 ]\
@@ -808,7 +814,8 @@ It is titled *A Treatise on the Treachery of Crabs.* The handwriting is neat but
 (if: (random:1,175) is 3)[(set: $cards to it + (array: &quot;jargo&quot;))]\
 (if: (random:1,175) is 4)[(set: $cards to it + (array: &quot;bibleopoly&quot;))]\
 (if: (random:1,175) is 5)[(set: $cards to it + (array: &quot;Painting&quot;))]\
-(if: (random:1,175) is 6)[(set: $cards to it + (array: &quot;confide&quot;))]\
+(if: (random:1,175) is 6)[(set: $cards to it + (array: &quot;Candies&quot;))]\
+(if: (random:1,150) is 7)[(set: $cards to it + (array: &quot;confide&quot;))]\
 (if: (random:1,50) is 1)[(set: $cards to it + (array: &quot;ethicsTome&quot;))]\
 (if: $keys &gt;=1 and (random:1,150) is 150 and not ($inventory contains &quot;headband&quot;))[(set: $cards to it + (array: &quot;headband&quot;))]\
 (if: $blessings contains &quot;discovery&quot; and (random: 1,8) is 8 and not ($cards contains &quot;Blessed&quot;))[(set: $cards to it + (array: &quot;Blessed&quot;))]\
@@ -975,14 +982,13 @@ A treasure chest squats on the dungeon floor. It is decorated with a carving of 
 (set: $sanity to it - 5)\
 (if: $testIslandKey is 0)[(if: $inventory contains &quot;crabNote&quot;)[[[Show him the treatise on the treachery of crabs]]
 ]\
-(if: $inventory contains &quot;photocopies&quot;)[[[Show him your photocopies of the treatise]]]\
-]\
+(if: $inventory contains &quot;photocopies&quot;)[[[Show him your photocopies of the treatise]]
+]]\
 [[Leave this place|Main]]]</tw-passagedata><tw-passagedata pid="104" name="Talk to the hungry-looking one" tags="" position="2157,504">He has a plump waistline but is raving about watermelons and an unsateable hunger. Listening to him makes your stomach growl.
 
 (set: $satiety to it - 15)\
 [[Leave this place|Main]]
-(if: $inventory contains &quot;photocopies&quot;)[[[Give him a copy of the Treatise on the Treachery of Crabs|Share the treatise with hungry man]]
-]</tw-passagedata><tw-passagedata pid="105" name="Show him the treatise on the treachery of crabs" tags="" position="1934,641">He reads it closely, nodding and muttering as he does.
+(if: $inventory contains &quot;photocopies&quot;)[[[Give him a copy of the Treatise on the Treachery of Crabs|Share the treatise with hungry man]]]</tw-passagedata><tw-passagedata pid="105" name="Show him the treatise on the treachery of crabs" tags="" position="1934,641">He reads it closely, nodding and muttering as he does.
 
 When he&#x27;s finished he hands it back to you. &#x27;You must spread the word&#x27;, he says. &#x27;The crabs must be stopped.&#x27;
 
@@ -1038,7 +1044,7 @@ Happy birthday!
 (set: $blessings to it + (array: &quot;discovery&quot;))\
 [[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="115" name="Blessed" tags="" position="1282,46">This room of the dungeon sparkles and glows with incandescence. Basking in the light makes you feel better and healthier in every way.
 
-(set: $s to (live: 0.1s))\
+(set: $s to (live: 0.15s))\
 (live: 0.4s)[(set: $HP to it + (either: 0,0,1,2))(set: $energy to it + (either: 0,0,1,2))(set: $sanity to it + (either: 0,0,1,2))(set: $satiety to it + (either: 0,0,1,2))\
 (if: $hp &gt;100)[(stop:)]\
 (if: $energy &gt;100)[(stop:)]\
@@ -1051,8 +1057,12 @@ Happy birthday!
 
 It&#x27;s discomfiting. 
 
-(live: 1.5s)[(set: $sanity to it - 1)(replace: ?Sanity)[(color: orange)[$sanity]]]\
+(live: 1.8s)[(set: $sanity to it - 1)(replace: ?Sanity)[(color: orange)[$sanity]]]\
 (if: not ($achievements contains &quot;Experience an awkward situation&quot;))[(set: $achievements to it + (array: &quot;Experience an awkward situation&quot;))]]\
+(if: (random: 1,10) is 10)[Today they are brewing an unusual foul-smelling brew. One furtively pushes a cup towards you.
+
+[[Take the foul-smelling brew]]
+]\
 [[Drink the tea]]
 [[Eat the snacks]]
 [[Attack the slimes]](if: $hunger &gt; 1)[
@@ -1083,11 +1093,11 @@ His bones gleam whitely in the candlelight. He is terrifying.
 (if: not ($achievements contains &quot;Meet Wesley J Skelliman&quot;))[(set: $achievements to it + (array: &quot;Meet Wesley J Skelliman&quot;))]\
 [[Run]] *((if: ($monster&#x27;s fleeChance + $fleeBonus) &gt; 100)[100](elseif: $monster&#x27;s fleeChance + $fleeBonus &lt; 0)[0](else:)[(round: ($monster&#x27;s fleeChance + $fleeBonus))]% chance of success)*
 (if: not($monster contains &quot;wait&quot;))[[[Curl up in a ball on the floor|Wait, defenceless]]]
-(if: $hunger &gt; 1 and $sanity &lt;=15)[[[Gnaw on Wesley&#x27;s bones|EatSkeleton]]
+(if: $hunger &gt; 1 and $sanity &lt;=20)[[[Gnaw on Wesley&#x27;s bones|EatSkeleton]]
 ]\
 (if: $ally&#x27;s type is &quot;pigeons&quot;)[[[Ask your pigeons to attack]]]</tw-passagedata><tw-passagedata pid="122" name="EatSkeleton" tags="" position="1577,1186">There&#x27;s not much meat left on the skeleton&#x27;s bones, but it is something.
 
-(set: $satiety to it + 5)\
+(set: $s to (text-style: &quot;upside-down&quot;))(set: $satiety to it + 5)\
 [[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="123" name="Glimpse" tags="" position="2183,1297">You glimpse something shiny at the end of the corridor. It turns the corner and disappears from sight. 
 
 (set: $monster to (datamap: &quot;fleeChance&quot;,-5))\
@@ -1106,7 +1116,6 @@ His bones gleam whitely in the candlelight. He is terrifying.
 
 (set: $blessings to it + (array: &quot;laughter&quot;))\
 [[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="126" name="lol" tags="" position="494,808">(set: $delayExecute to false)\
-(set: $HP to it + $HPdrain)\
 (set: $sanity to it - (random: 10,20))\
 (either: &quot;Ahahaha&quot;, &quot;Ahahahahahaaa&quot;, &quot;Ahahahahahaha&quot;) (either: &quot;hahaha&quot;, &quot;ahahahaha&quot;, &quot;haha&quot;) (either: &quot;aha&quot;, &quot;ahahaha&quot;) (either: &quot;hahahaa&quot;, &quot;hahahahahaha&quot;).
 
@@ -1154,7 +1163,7 @@ Your pigeons&#x27; health is now (print: $ally&#x27;s health)%.
 
 [[Onwards!|Main]]]</tw-passagedata><tw-passagedata pid="132" name="Allow your pigeons to feed." tags="" position="251,1237">They eat messily. Once they are done your (print: $ally&#x27;s type) look healthier and readier for battle.
 
-(set: $ally&#x27;s health to it + (random: 10,40))\
+(set: $ally&#x27;s health to it + (random: 5,20))\
 (if: $ally&#x27;s health &gt; 100)[(set: $ally&#x27;s health to 100)]\
 Their health is now (print: $ally&#x27;s health)%.
 
@@ -1162,8 +1171,8 @@ Their health is now (print: $ally&#x27;s health)%.
 $x[Survive ten minutes.]
 (if: $achievements contains &quot;Survive an hour&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
 $x[Survive an hour.]
-(if: $achievements contains &quot;Survive two hours&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
-$x[Survive two hours.]
+(if: $achievements contains &quot;Survive three hours&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
+$x[Survive three hours.]
 (if: $achievements contains &quot;Survive six hours&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
 $x[Survive six hours.]
 (if: $achievements contains &quot;Fail spectacularly&quot;)[(set: $x to (color: yellow))](else:)[(set: $x to (color: #818181))]
@@ -1225,6 +1234,7 @@ $x[Devote hours of your life to a worthy endeavour.]
 (display: &quot;monster&quot;)]\
 (else:)[
 It looks angrier than ever since you stole its key.
+
 (set: $monster to (datamap: &quot;fleeChance&quot;, 15, &quot;damage&quot;, 25, &quot;bonus&quot;, &quot;Let it look you in the eyes&quot;))\
 (display: &quot;monster&quot;)]</tw-passagedata><tw-passagedata pid="136" name="Steal the key" tags="" position="1404,805">Are you sure that you want to do this? You are unlikely to emerge unscathed.
 
@@ -1261,7 +1271,6 @@ When you pull away your lips are stained and your heart is pounding.
 (set: $HP to 1)\
 (set: $sanity to (ceil: $sanity/2))\
 (if: not ($achievements contains &quot;Consumate a relationship&quot;))[(set: $achievements to it + (array: &quot;Consumate a relationship&quot;))]\
-
 It leans in close to you once more. This time, though, you feel something seep out of your mouth. Your knees buckle; your vision blears; your ears ring. The pain begins to fade into blankness.
 
 And then, abruptly, it stops. You hear footsteps - real footsteps! - walk away from you. The ghost with the bleeding mouth took almost everything, but it left just enough for you to survive.
@@ -1290,7 +1299,8 @@ When you wake you find a note thanking you for your donation and a key placed on
 [[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="146" name="Let them feed on your fingers" tags="" position="1339,2184">It only hurts a little bit.
 
 (if: not ($achievements contains &quot;Feed your pets&quot;))[(set: $achievements to it + (array: &quot;Feed your pets&quot;))]\
-(set: $HP to it - 3)\
+(set: $HP to it - 5)\
+(set: $ally&#x27;s health to it + (random: 5,20))\
 [[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="147" name="blessings" tags="" position="1837,294">Something sparkles in the dungeon ahead.
 
 (set: $nextBlessing to $turns + 15 + (round: $turns/7))\
@@ -1326,7 +1336,9 @@ When you wake you find a note thanking you for your donation and a key placed on
 (set: $slimeEnemy to 1)\
 (set: $turns to 20)\
 (set: $inklings to 3)\
-(set: $blessings to it + (array: &quot;laughter&quot;, &quot;sacrifice&quot;, &quot;acquisition&quot;))</tw-passagedata><tw-passagedata pid="157" name="Eat the note" tags="" position="1099,2051">You feel much better now that you&#x27;ve put these things out of your mind and in to your stomach.
+(set: $blessings to it + (array: &quot;laughter&quot;, &quot;sacrifice&quot;, &quot;acquisition&quot;))\
+(set: $inventory to it + (array: &quot;photocopies&quot;, &quot;crabNote&quot;))
+(set: $sanity to 19)</tw-passagedata><tw-passagedata pid="157" name="Eat the note" tags="" position="1099,2051">You feel much better now that you&#x27;ve put these things out of your mind and in to your stomach.
 
 (set: $satiety to it + 10)\
 (set: $sanity to it + 10)\
@@ -1383,22 +1395,25 @@ Happy birthday!
 [[Achievements]]
 [[Begin again|init]]</tw-passagedata><tw-passagedata pid="168" name="Go down" tags="" position="2438,994">You descend the staircase into the velvety blackness and the sheer unknown.
 
+*Your progress has been saved.*
+
 (set: $achievements to it + (array: &quot;Find the sub-dungeon&quot;))\
 (set: $cards to it - (array: &quot;poop&quot;, &quot;exit&quot;, &quot;Gorgon&quot;, &quot;monsters1&quot;, &quot;monsters2&quot;, &quot;Skeleton&quot;))\
 (set: $cards to it + (array: &quot;hole&quot;, &quot;hole&quot;, &quot;lockedChest&quot;, &quot;green dragon&quot;, &quot;white dragon&quot;, &quot;red dragon&quot;))\
 (set: $descension to 1)\
+(set: $keys to it - 5)\
 (save-game:&quot;Slot A&quot;)\
 [[Down, down, down.|Main]]</tw-passagedata><tw-passagedata pid="169" name="Blessing of snacking" tags="" position="2084,54">You&#x27;re not sure why, but whenever you reach into your pockets you find chocolate-coated coffee beans.
 
 (set: $blessings to it + (array: &quot;snacking&quot;))\
 [[Yum.|Main]]</tw-passagedata><tw-passagedata pid="170" name="hole" tags="" position="2977,1193">A spiral staircase leads down  to lower levels still. The spirals become smaller and tighter as the staircase coils ever downwards. You know with fractured certainty that if you dropped something down the gap you would never hear it hit the bottom.
 
-And for a brief moment the entire stone dungeon seems nothing more than a house of leaves, moments before the wind.
+And for a brief moment the vast stone dungeon seems nothing more than a house of leaves, moments before the wind.
 
 (set: $delayExecute to &quot;(set: $sanity to it - 15)&quot;)\
 [[Shake off your malaise|Main]]
 (if: $inklings &gt; 0 and $inklings &lt; 29)[(link: &quot;Go down the stairs&quot;)[(colour: &quot;#197fe6&quot;)[&#x27;&#x27;You need (text: 29 - $inklings) more Inklings of an Unfathomable Truth&#x27;&#x27;]]]
-(if: $inklings &gt;=19)[[Go down the stairs]]]</tw-passagedata><tw-passagedata pid="171" name="catFriend" tags="" position="168,2384">A cat - it looks like the one you befriended earlier - approaches you from across the room.
+(if: $inklings &gt;=19)[[[Go down the stairs]]]</tw-passagedata><tw-passagedata pid="171" name="catFriend" tags="" position="168,2384">A cat - it looks like the one you befriended earlier - approaches you from across the room.
 
 (if: $catKey is 1)[It purrs deeply and drops a rusted key at your feet. Could this be out of gratitude for the pigeons you gave to it earlier?
 
@@ -1430,7 +1445,8 @@ It is a small and nauseating meal.
 
 (set: $monster to (datamap: &quot;fleeChance&quot;, 40, &quot;damage&quot;, 20))\
 (display: &quot;monster&quot;)\
-(if: not($inventory contains &quot;arrow&quot;))[[[Pull the arrow from its chest]] *((if: (10 + $fleeBonus) &gt; 100)[100](elseif: 10 + $fleeBonus &lt; 0)[0](else:)[(round: (10 + $fleeBonus))]% chance of success)*]
+(if: not($inventory contains &quot;arrow&quot;))[[[Pull the arrow from its chest]] *((if: (10 + $fleeBonus) &gt; 100)[100](elseif: 10 + $fleeBonus &lt; 0)[0](else:)[(round: (10 + $fleeBonus))]% chance of success)*
+]
 (else:)[[[Wave the arrow threateningly]]]</tw-passagedata><tw-passagedata pid="176" name="green dragon" tags="" position="2803,163">It&#x27;s a green dragon! It has already spotted you. It looks like it&#x27;s about to strike.
 
 (set: $monster to (datamap: &quot;fleeChance&quot;, 20, &quot;damage&quot;, 20))\
@@ -1445,7 +1461,8 @@ Or is it? Where you thought you saw the dragon is a blank wall. Are you seeing t
 
 (set: $sanity to it - 20)\
 [[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="179" name="Blessing of boundaries" tags="" position="2083,172">(set: $statMax to it + 25)\
-The maximum value that your HP, sanity, energy and satiety can reach without penalty is now &#x27;&#x27;(print: $statMax)&#x27;&#x27;.
+(set: $HP to it + 15)(set: $sanity to it + 15)(set: $energy to it + 15)(set: $satiety to it + 15)\
+Increases your health, sanity, energy and satiety, and increases the maximum value they can reach without penalty to &#x27;&#x27;(print: $statMax)&#x27;&#x27;.
 
 [[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="180" name="headband" tags="" position="726,2246">A repulsive orange man rants and raves in the corner of the room. He catches your eye and belligerates towards you. 
 
@@ -1599,7 +1616,7 @@ With the process completed, your legs feel stronger and more agile. Let&#x27;s s
 
 You feel more confused than ever.(set: $sanity to 1)
 
-[[Onwards!|Main]]]</tw-passagedata><tw-passagedata pid="208" name="demon" tags="" position="1090,2314">(set: $drainValue to (random: 15,30))\
+[[Onwards!|Main]]]</tw-passagedata><tw-passagedata pid="208" name="demon" tags="" position="1090,2314">(set: $drainValue to (random: 10,30))\
 (set: $playerVariables to (shuffled: ...(array: &quot;health&quot;, &quot;sanity&quot;, &quot;energy&quot;, &quot;satiety&quot;)))\
 (set: $drainType to 1st of $playerVariables)\
 A (either: &quot;tiny&quot;, &quot;fuzzy&quot;, &quot;huge&quot;, &quot;enormous&quot;, &quot;medium-sized&quot;, &quot;glowering&quot;, &quot;purple-skinned&quot;, &quot;tentacled&quot;) demon buzzes towards you. It asks you to sacrifice (print: $drainValue) (print: $drainType).
@@ -1610,7 +1627,7 @@ A (either: &quot;tiny&quot;, &quot;fuzzy&quot;, &quot;huge&quot;, &quot;enormous
 (if: $drainType is &quot;energy&quot;)[(set: $energy to it - $drainValue)]\
 (if: $drainType is &quot;sanity&quot;)[(set: $sanity to it - $drainValue)]\
 (if: $drainType is &quot;satiety&quot;)[(set: $satiety to it - $drainValue)]\
-[[It is done.|Main]]</tw-passagedata><tw-passagedata pid="210" name="Refuse." tags="" position="1242,2497">(set: $drainValue to (random: 15,30))\
+[[It is done.|Main]]</tw-passagedata><tw-passagedata pid="210" name="Refuse." tags="" position="1242,2497">(set: $drainValue to (random: 10,30))\
 (set: $drainType to 2nd of $playerVariables)\
 (if: $drainType is &quot;health&quot;)[(set: $HP to it - $drainValue)]\
 (if: $drainType is &quot;energy&quot;)[(set: $energy to it - $drainValue)]\
@@ -1630,6 +1647,7 @@ You wonder what it will do now.
 (set: $achievementCount to it + 1)\
 ]\
 (save-game:&quot;Slot A&quot;)\
+(set: $mushroomCooldown to -10)(set: $strangeBrew to 0)\
 [[Begin again|init]] *(Your progress and achievements have been saved.)*</tw-passagedata><tw-passagedata pid="213" name="bibleopoly" tags="" position="2451,1176">You enter a cozy den. The embers of a fire glow within a stone hearth. A half-played game of *DungeonDeity-Opoly* lies abandoned on a small wooden table.
 
 (set: $cards to it - (array: &quot;bibleopoly&quot;))\
@@ -1689,36 +1707,36 @@ The taste, oh god, is horrible. Your stomach cramps violently.
 
 (set: $satiety to it + 8)\
 (set: $HP to it - 20)\
-[[Onwards.|Main]]</tw-passagedata><tw-passagedata pid="224" name="test" tags="" position="1134,47.5">[[Blessed]]</tw-passagedata><tw-passagedata pid="225" name="confide" tags="" position="1668.6666666666667,2393.1969234918447">A PC monitor displays yellow text on a black background. It demands that you confide something to it.
+[[Onwards.|Main]]</tw-passagedata><tw-passagedata pid="224" name="test" tags="" position="1134,47">[[Blessed]]</tw-passagedata><tw-passagedata pid="225" name="confide" tags="" position="1668,2393">A PC monitor displays yellow text on a black background. It demands that you confide something to it.
 
 (set: $cards to it - (array: &quot;confide&quot;))\
-[[Confide an old wound]] *- this will either somewhat reduce or significantly increase your health*
-[[Confide a shameful secret]] *- this will either somewhat reduce or significantly increase your sanity*
-[[Confide an abandoned ambition]] - *this will either somewhat reduce or significantly increase your energy*
-[[Confide an episode of self-indulgence]] - *this will either somewhat reduce or significantly increase your satiety*</tw-passagedata><tw-passagedata pid="226" name="Confide an old wound" tags="" position="1443.6666666666667,2543.1969234918447">(if: (random: 1,2) is 1)[Even now the memory still hurts.
+[[[Confide an old wound]] *- this will either somewhat reduce or significantly increase your health*]&lt;confide1|
+[[[Confide a shameful secret]] *- this will either somewhat reduce or significantly increase your sanity*]&lt;confide2|
+[[[Confide an abandoned ambition]] - *this will either somewhat reduce or significantly increase your energy*]&lt;confide3|
+[[[Confide an episode of self-indulgence]] - *this will either somewhat reduce or significantly increase your satiety*]&lt;confide4| (replace: (either: &quot;?confide1&quot;, &quot;?confide2&quot;, &quot;?confide3&quot;, &quot;?confide4&quot;))[]</tw-passagedata><tw-passagedata pid="226" name="Confide an old wound" tags="" position="1443,2543">(if: (random: 1,2) is 1)[Even now the memory still hurts.
 
 (set: $HP to it - 12)]\
 (else:)[It&#x27;s a painful memory, but it&#x27;s also from a long time ago. You&#x27;re stronger now.
 
 (set: $HP to it + 25)]\
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="227" name="Confide a shameful secret" tags="" position="1593.6666666666667,2543.1969234918447">(if: (random: 1,2) is 1)[A familiar sense of shame settles over you.
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="227" name="Confide a shameful secret" tags="" position="1593,2543">(if: (random: 1,2) is 1)[A familiar sense of shame settles over you.
 
 (set: $sanity to it - 12)]\
 (else:)[Writing it down is cathartic. You feel a weight lift from your mind.
 
 (set: $sanity to it + 25)]\
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="228" name="Confide an abandoned ambition" tags="" position="1743.6666666666667,2543.1969234918447">(if: (random: 1,2) is 1)[Writing it down reminds you of the effort you devoted to the task. 
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="228" name="Confide an abandoned ambition" tags="" position="1743,2543">(if: (random: 1,2) is 1)[Writing it down reminds you of the effort you devoted to the task. 
 
 Is this what awaits you should you escape the dungeon? More futile endeavours? More fruitless labour? More unmet ambitions?
 
 Where will you find the strength?
 
-(set: $sanity to it - 12)\
+(set: $energy to it - 12)\
 [[Shake off your malaise|Main]]]\
 (else:)[How could you ever have let this fall to the wayside? You need to continue! You must escape!
 
 (set: $energy to it + 25)\
-[[Onwards!|Main]]]</tw-passagedata><tw-passagedata pid="229" name="Confide an episode of self-indulgence" tags="" position="1893.6666666666667,2543.1969234918447">... and then you ate a pie, and then a pizza, and then a warm ginger milk drink, and then some rice, and then some soylent, and them some chocolate, and then some biscuits, and then...
+[[Onwards!|Main]]]</tw-passagedata><tw-passagedata pid="229" name="Confide an episode of self-indulgence" tags="" position="1893,2543">... and then you ate a pie, and then a pizza, and then a warm ginger milk drink, and then some rice, and then some soylent, and them some chocolate, and then some biscuits, and then...
 
 (if: (random: 1,2) is 1)[... and oh god remembering it makes you hungrier than ever.
 
@@ -1726,7 +1744,20 @@ Where will you find the strength?
 (else:)[...and you can taste the food in your mouth and feel it settle your stomach. Psychosomatic or not, you feel less hungry now.
 
 (set: $satiety to it + 25)]\
-[[Onwards!|Main]]</tw-passagedata></tw-storydata>
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="230" name="Candies" tags="" position="2444.636311630377,2164.045414090749">You find some candies.
+
+(set: $cards to it - (array: &quot;Candies&quot;))(set: $delayExecute to &quot;(set: $satiety to it + 10)&quot;)\
+[[Eat them|Main]]
+[[Throw them on the ground]]</tw-passagedata><tw-passagedata pid="231" name="Throw them on the ground" tags="" position="2519.636311630377,2305.7120807574156">(set: $delayExecute to false)\
+[[You threw them on the ground.|Main]]</tw-passagedata><tw-passagedata pid="232" name="Take the foul-smelling brew" tags="" position="2403.6666666666665,1584.3333333333333">(set: $strangeBrew to 1)(set: $cards to it + (array: &quot;strangeBrew&quot;))\
+It has the consistency of mud and it smells like ash, yet it nonetheless tastes deeply wholesome. 
+
+*You are now enjoying the effects of an unusual brew.*
+
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="233" name="strangeBrew" tags="" position="2399.7575309143926,1693.6666666666665">(set: $strangeBrew to 0)(set: $cards to it - (array: &quot;strangeBrew&quot;))\
+The effects of the tea have worn off.
+
+[[Oh well.|Main]]</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">"use strict";function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var _slicedToArray=function(){function e(e,t){var n=[],r=!0,o=!1,i=void 0;try{for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(e){o=!0,i=e}finally{try{!r&&s.return&&s.return()}finally{if(o)throw i}}return n}return function(t,n){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol?"symbol":typeof e};!function(){/**
  * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
