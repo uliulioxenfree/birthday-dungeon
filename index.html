@@ -124,7 +124,9 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 
 
 
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
 
 
 
@@ -481,7 +483,7 @@ You slam the book shut. What have you unleashed?
 (set: $HPdrain to 1)\
 [[Onwards?|Main]]</tw-passagedata><tw-passagedata pid="27" name="altar" tags="" position="1085,1329">You come across a shrine. On it is a stone statue of a squid-faced angel.
 
-(if: $cards contains &quot;displeasedGod&quot;)[[[Appease it with a sacrifice]]
+(if: $cards contains &quot;displeasedGod&quot; or $cards contains &quot;furiousGod&quot;)[[[Appease it with a sacrifice]]
 [[Defy it once more|Knock the shrine over]]
 ]\
 (else:)[[[Pray]]
@@ -815,8 +817,9 @@ It is titled *A Treatise on the Treachery of Crabs.* The handwriting is neat but
 (if: (random:1,175) is 4)[(set: $cards to it + (array: &quot;bibleopoly&quot;))]\
 (if: (random:1,175) is 5)[(set: $cards to it + (array: &quot;Painting&quot;))]\
 (if: (random:1,175) is 6)[(set: $cards to it + (array: &quot;Candies&quot;))]\
-(if: (random:1,150) is 7)[(set: $cards to it + (array: &quot;confide&quot;))]\
-(if: (random:1,50) is 1)[(set: $cards to it + (array: &quot;ethicsTome&quot;))]\
+(if: (random:1,175) is 7)[(set: $cards to it + (array: &quot;tornado&quot;))]\
+(if: (random:1,60) is 1)[(set: $cards to it + (array: &quot;confide&quot;))]\
+(if: (random:1,60) is 1)[(set: $cards to it + (array: &quot;ethicsTome&quot;))]\
 (if: $keys &gt;=1 and (random:1,150) is 150 and not ($inventory contains &quot;headband&quot;))[(set: $cards to it + (array: &quot;headband&quot;))]\
 (if: $blessings contains &quot;discovery&quot; and (random: 1,8) is 8 and not ($cards contains &quot;Blessed&quot;))[(set: $cards to it + (array: &quot;Blessed&quot;))]\
 (if: $energy &lt;25 and not ($cards contains &quot;couch&quot;))[(set: $cards to it + (array: &quot;couch&quot;))]\
@@ -1399,7 +1402,7 @@ Happy birthday!
 
 (set: $achievements to it + (array: &quot;Find the sub-dungeon&quot;))\
 (set: $cards to it - (array: &quot;poop&quot;, &quot;exit&quot;, &quot;Gorgon&quot;, &quot;monsters1&quot;, &quot;monsters2&quot;, &quot;Skeleton&quot;))\
-(set: $cards to it + (array: &quot;hole&quot;, &quot;hole&quot;, &quot;lockedChest&quot;, &quot;green dragon&quot;, &quot;white dragon&quot;, &quot;red dragon&quot;))\
+(set: $cards to it + (array: &quot;hole&quot;, &quot;hole&quot;, &quot;lockedChest&quot;, &quot;green dragon&quot;, &quot;white dragon&quot;, &quot;red dragon&quot;, &quot;EnergyGraffiti&quot;, &quot;HealthGraffiti&quot;, &quot;SanityGraffiti&quot;, &quot;SatietyGraffiti&quot;))\
 (set: $descension to 1)\
 (set: $keys to it - 5)\
 (save-game:&quot;Slot A&quot;)\
@@ -1744,20 +1747,29 @@ Where will you find the strength?
 (else:)[...and you can taste the food in your mouth and feel it settle your stomach. Psychosomatic or not, you feel less hungry now.
 
 (set: $satiety to it + 25)]\
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="230" name="Candies" tags="" position="2444.636311630377,2164.045414090749">You find some candies.
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="230" name="Candies" tags="" position="2444,2164">You find some candies.
 
 (set: $cards to it - (array: &quot;Candies&quot;))(set: $delayExecute to &quot;(set: $satiety to it + 10)&quot;)\
 [[Eat them|Main]]
-[[Throw them on the ground]]</tw-passagedata><tw-passagedata pid="231" name="Throw them on the ground" tags="" position="2519.636311630377,2305.7120807574156">(set: $delayExecute to false)\
-[[You threw them on the ground.|Main]]</tw-passagedata><tw-passagedata pid="232" name="Take the foul-smelling brew" tags="" position="2403.6666666666665,1584.3333333333333">(set: $strangeBrew to 1)(set: $cards to it + (array: &quot;strangeBrew&quot;))\
+[[Throw them on the ground]]</tw-passagedata><tw-passagedata pid="231" name="Throw them on the ground" tags="" position="2519,2305">(set: $delayExecute to false)\
+[[You threw them on the ground.|Main]]</tw-passagedata><tw-passagedata pid="232" name="Take the foul-smelling brew" tags="" position="2403,1584">(set: $strangeBrew to 1)(set: $cards to it + (array: &quot;strangeBrew&quot;))\
 It has the consistency of mud and it smells like ash, yet it nonetheless tastes deeply wholesome. 
 
 *You are now enjoying the effects of an unusual brew.*
 
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="233" name="strangeBrew" tags="" position="2399.7575309143926,1693.6666666666665">(set: $strangeBrew to 0)(set: $cards to it - (array: &quot;strangeBrew&quot;))\
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="233" name="strangeBrew" tags="" position="2399,1693">(set: $strangeBrew to 0)(set: $cards to it - (array: &quot;strangeBrew&quot;))\
 The effects of the tea have worn off.
 
-[[Oh well.|Main]]</tw-passagedata></tw-storydata>
+[[Oh well.|Main]]</tw-passagedata><tw-passagedata pid="234" name="tornado" tags="" position="720,2595">You are overcome by sudden sadness. You were once tournament champion in China. You were once a threat all over Europe. The world was once your playground.
+
+There was a time you were not trapped in this basement. There was a time you were able to enjoy the sun. 
+
+There was somebody who once meant a lot to you, and to whom you meant a lot in return.
+
+Wait. These memories aren&#x27;t yours. What happened? Whose grief is this?
+
+(set: $delayExecute to &quot;(set: $sanity to it - 10)&quot;)\
+[[Return to yourself|Main]]</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">"use strict";function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var _slicedToArray=function(){function e(e,t){var n=[],r=!0,o=!1,i=void 0;try{for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(e){o=!0,i=e}finally{try{!r&&s.return&&s.return()}finally{if(o)throw i}}return n}return function(t,n){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol?"symbol":typeof e};!function(){/**
  * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
