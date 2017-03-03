@@ -116,7 +116,9 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 .visited /* all visited links */
 { color: #2471A3; }
 .visited:hover /* all visited hover links */
-{ color: #2E86C1; }</style><script role="script" id="twine-user-script" type="text/twine-javascript">
+{ color: #2E86C1; }
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
 
 
 
@@ -1521,7 +1523,7 @@ It is compelling enough that for a moment the thought of these demons (in the ai
 (set: $satiety to it - 20)\
 *You now have (print: $inklings) Inklings of an Unfathomable Truth.*
 
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="189" name="jargo" tags="" position="2431,209">You find some pants on the dungeon floor. It&#x27;s unclear whether they are cargo pants, jeans, or some hybrid of the two.
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="189" name="jargo" tags="" position="2431,209">You find some trousers on the dungeon floor. It&#x27;s unclear whether they are cargo pants, jeans, or some hybrid of the two.
 
 (set: $cards to it - (array: &quot;jargo&quot;))\
 [[Put them on]]
@@ -1770,26 +1772,26 @@ The effects of the tea have worn off.
 
 [[Oh well.|Main]]</tw-passagedata><tw-passagedata pid="234" name="tornado" tags="" position="720,2595">You are overcome by sudden sadness. You were once tournament champion in China. You were once a threat all over Europe. The world was once your playground.
 
-There was a time you were not trapped in this basement. There was a time you were able to enjoy the sun. 
+There was a time you were not trapped in this basement. There was a time you were able to enjoy the sun. When you had a flawless complexion.
 
 There was somebody who once meant a lot to you, and to whom you meant a lot in return.
 
 Wait. These memories aren&#x27;t yours. What happened? Whose grief is this?
 
-(set: $delayExecute to &quot;(set: $sanity to it - 10)&quot;)(set: $cards to it - (array: &quot;tornado&quot;)\
-[[Return to yourself|Main]]</tw-passagedata><tw-passagedata pid="235" name="tiles" tags="" position="490,2601.6969234918447">The room is bifurcated by a row of three large stone tiles. Each is inscribed with a symbol.
+(set: $delayExecute to &quot;(set: $sanity to it - 10)&quot;)(set: $cards to it - (array: &quot;tornado&quot;))\
+[[Return to yourself|Main]]</tw-passagedata><tw-passagedata pid="235" name="tiles" tags="" position="490,2601">The room is bifurcated by a row of three large stone tiles. Each is inscribed with a symbol.
 
 Which tile will you step on?
 
 (set: $tiles to (shuffled: ... $tiles))\
 [(link: $tiles&#x27;s 1st)[(if: $safeTiles contains $tiles&#x27;s 1st)[(go-to: &quot;safeTile&quot;)](else:)[(go-to: &quot;unsafeTile&quot;)]]]&lt;tile1|
 [(link: $tiles&#x27;s 2nd)[(if: $safeTiles contains $tiles&#x27;s 2nd)[(go-to: &quot;safeTile&quot;)](else:)[(go-to: &quot;unsafeTile&quot;)]]]&lt;tile2|
-[(link: $tiles&#x27;s 3rd)[(if: $safeTiles contains $tiles&#x27;s 3rd)[(go-to: &quot;safeTile&quot;)](else:)[(go-to: &quot;unsafeTile&quot;)]]]&lt;tile3|(if: (random: 1,15) is 1)[(replace: (either: &quot;?tile1&quot;, &quot;?tile2&quot;, &quot;?tile3&quot;))[[[The Obvious Trap]]]]</tw-passagedata><tw-passagedata pid="236" name="safeTile" tags="" position="433.66666666666663,2727.378747424082">You pass through the room without incident.
+[(link: $tiles&#x27;s 3rd)[(if: $safeTiles contains $tiles&#x27;s 3rd)[(go-to: &quot;safeTile&quot;)](else:)[(go-to: &quot;unsafeTile&quot;)]]]&lt;tile3|(if: (random: 1,15) is 1)[(replace: (either: &quot;?tile1&quot;, &quot;?tile2&quot;, &quot;?tile3&quot;))[[[The Obvious Trap]]]]</tw-passagedata><tw-passagedata pid="236" name="safeTile" tags="" position="433,2727">You pass through the room without incident.
 
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="237" name="unsafeTile" tags="" position="550.3333333333333,2725.7120807574156">The tile crumbles below your feet. Your feet are plunged into a shallow pit filled with (either: &quot;vampire fish&quot;, &quot;tiny crocodiles&quot;, &quot;pirahnas&quot;, &quot;vipers&quot;, &quot;wasps&quot;, &quot;asps&quot;, &quot;angry lilliputians&quot;, &quot;electric eels&quot;, &quot;spikes&quot;, &quot;sentient rock-creatures&quot;).
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="237" name="unsafeTile" tags="" position="550,2725">The tile crumbles below you. Your feet are plunged into a shallow pit filled with (either: &quot;vampire fish&quot;, &quot;tiny crocodiles&quot;, &quot;pirahnas&quot;, &quot;vipers&quot;, &quot;wasps&quot;, &quot;asps&quot;, &quot;angry lilliputians&quot;, &quot;electric eels&quot;, &quot;spikes&quot;, &quot;sentient rock-creatures&quot;).
 
 (set: $HP to it - (random:10,15))\
-[[Limp on|Main]]</tw-passagedata><tw-passagedata pid="238" name="The Obvious Trap" tags="" position="503.33333333333326,2838.3333333333335">The tile concealed an obvious trap.
+[[Limp on|Main]]</tw-passagedata><tw-passagedata pid="238" name="The Obvious Trap" tags="" position="503,2838">The tile concealed an obvious trap.
 
 (if: not ($achievements contains &quot;Make a poor decision&quot;))[(set: $achievements to it + (array: &quot;Make a poor decision&quot;))]\
 (set: $HP to it - 20)\
