@@ -280,7 +280,7 @@ A nearby sign lists the accomplishments of those who have entered the dungeon be
 (if: $achievements is not (array: &quot;&quot;))[(save-game:&quot;Slot A&quot;)]\
 (set: $ally to (datamap: &quot;type&quot;, &quot;none&quot;, &quot;health&quot;, 0))\
 (set: $cards to (array: &quot;ghost&quot;, &quot;poop&quot;, &quot;badFood&quot;, &quot;watermelon&quot;, &quot;energy&quot;, &quot;satan&quot;, &quot;potion&quot;, &quot;altar&quot;, &quot;presents&quot;, &quot;tiles&quot;, &quot;hunger&quot;, &quot;slime&quot;, &quot;monsters1&quot;, &quot;doors&quot;, &quot;treasureChest&quot;, &quot;catFoe&quot;))\
-(set: $untouchables to (array: &quot;couch&quot;, &quot;peckishCure&quot;, &quot;debugMenagerie&quot;, &quot;ethicsTome&quot;, &quot;pirates&quot;, &quot;Blessed&quot;, &quot;headband&quot;, &quot;blessings&quot;, &quot;saveGame&quot;, &quot;keyFind&quot;, &quot;Painting&quot;, &quot;Candies&quot;, &quot;tornado&quot;, &quot;confide&quot;, &quot;bibleopoly&quot;, &quot;sergeGuide&quot;, &quot;fairy&quot;, &quot;hole&quot;, &quot;deathDoor&quot;, &quot;Convention&quot;, &quot;hatFind&quot;, &quot;demon&quot;, &quot;jargo&quot;))\
+(set: $untouchables to (array: &quot;couch&quot;, &quot;peckishCure&quot;, &quot;debugMenagerie&quot;, &quot;ethicsTome&quot;, &quot;pirates&quot;, &quot;Blessed&quot;, &quot;headband&quot;, &quot;blessings&quot;, &quot;saveGame&quot;, &quot;keyFind&quot;, &quot;Painting&quot;, &quot;Candies&quot;, &quot;tornado&quot;, &quot;confide&quot;, &quot;bibleopoly&quot;, &quot;sergeGuide&quot;, &quot;fairy&quot;, &quot;hole&quot;, &quot;deathDoor&quot;, &quot;Convention&quot;, &quot;hatFind&quot;, &quot;demon&quot;, &quot;jargo&quot;, &quot;strangeBrew&quot;))\
 (set: $tiles to (shuffled: ...(array: &quot;The Bulging Eggplant&quot;, &quot;The Red Giraffe&quot;, &quot;The Quivering Squid&quot;, &quot;The Gas Mask&quot;, &quot;The North Wind&quot;, &quot;The East Wind&quot;, &quot;The West Wind&quot;, &quot;The South Wind&quot;)))\
 (set: $safeTiles to (array: $tiles&#x27;s 1st) + (array: $tiles&#x27;s 2nd) + (array: $tiles&#x27;s 3rd))\
 (if: $achievements contains &quot;Escape&quot; and not ($achievements contains &quot;Find the sub-dungeon&quot;))[(set: $cards to it + (array: &quot;descentNote&quot;))]\
@@ -1631,7 +1631,7 @@ But you escape. And you hold the arrow in your hand as a souvenier.
 
 (set: $badTome to 0)\
 [[Read]]
-[[Leave it to the bookworms|Main]]</tw-passagedata><tw-passagedata pid="203" name="The sleek grey one" tags="" position="324,578">You double over in pain. The muscles in your legs are unknotting and reknitting over and over again. It feels like crabs are contrasting under your skin until, finally, it&#x27;s over.
+[[Leave it to the bookworms|Main]]</tw-passagedata><tw-passagedata pid="203" name="The sleek grey one" tags="" position="324,578">You double over in pain. The muscles in your legs are unknotting and reknitting over and over again. It feels like crabs are scuttling under your skin until, finally, it&#x27;s over.
 
 With the process completed, your legs feel stronger and more agile. Let&#x27;s see how fast you can run now.
 
@@ -1715,8 +1715,8 @@ You were right!
 
 (set: $blessings to it + (array: &quot;inheritance&quot;))\
 (set: $inherit to true)\
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="217" name="savedInit" tags="" position="740,697">(load-game: &quot;Slot A&quot;)\
-Loading...</tw-passagedata><tw-passagedata pid="218" name="saveGame2" tags="" position="1328,532">Something vast and unknowable has noted your progress.
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="217" name="savedInit" tags="achievements" position="740,697">Loading...
+(load-game: &quot;Slot A&quot;)</tw-passagedata><tw-passagedata pid="218" name="saveGame2" tags="" position="1328,532">Something vast and unknowable has noted your progress.
 
 *Your game has been saved.*
 
