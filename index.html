@@ -831,8 +831,8 @@ It is titled *A Treatise on the Treachery of Crabs.* The handwriting is neat but
 (if: $saveTimer &gt; 0)[(set: $saveTimer to it - 1)]\
 (else:)[(set: $cards to it + (array: &quot;saveGame&quot;))(set: $saveTimer to -10)]\
 (if: $sanity &gt;=25)[(set: $cards to it - (array: &quot;debugMenagerie&quot;))]\
-(if: (random:1,175) is 1 and ($HP + $sanity + $energy + $satiety) &gt; 190)[(set: $cards to it + (array: &quot;pirates&quot;))]\
-(if: $cards contains &quot;pirates&quot; and ($HP + $sanity + $energy + $satiety) &lt; 120)[(set: $cards to it - (array: &quot;pirates&quot;))]\
+(if: (random:1,175) is 1 and ($HP + $sanity + $energy + $satiety) &gt;= 200)[(set: $cards to it + (array: &quot;pirates&quot;))]\
+(if: $cards contains &quot;pirates&quot; and ($HP + $sanity + $energy + $satiety) &lt; 150)[(set: $cards to it - (array: &quot;pirates&quot;))]\
 (if: (random:1,175) is 2)[(set: $cards to it + (array: &quot;keyFind&quot;))]\
 (if: (random:1,175) is 3)[(set: $cards to it + (array: &quot;jargo&quot;))]\
 (if: (random:1,175) is 4)[(set: $cards to it + (array: &quot;bibleopoly&quot;))]\
@@ -847,7 +847,7 @@ It is titled *A Treatise on the Treachery of Crabs.* The handwriting is neat but
 (if: (random:1,75) is 1)[(set: $cards to it + (array: &quot;ethicsTome&quot;))]\
 (if: $strangeBrew is 1 and $teaTally &gt; (random: 35, 180))[(set: $cards to it + (array: &quot;strangeBrew&quot;))]\
 (if: $keys &gt;=1 and (random:1,175) is 175 and not ($inventory contains &quot;headband&quot;))[(set: $cards to it + (array: &quot;headband&quot;))]\
-(if: $blessings contains &quot;discovery&quot; and (random: 1,15) is 1 and not ($cards contains &quot;Blessed&quot;))[(set: $cards to it + (array: &quot;Blessed&quot;))]\
+(if: $blessings contains &quot;discovery&quot; and (random: 1,25) is 1 and not ($cards contains &quot;Blessed&quot;))[(set: $cards to it + (array: &quot;Blessed&quot;))]\
 (if: $energy &lt;25 and not ($cards contains &quot;couch&quot;))[(set: $cards to it + (array: &quot;couch&quot;))]\
 (if: $energy &gt;= 25)[(set: $cards to it - (array: &quot;couch&quot;))]\
 (if: $turns &gt;= $nextBlessing)[(set: $cards to it + (array: &quot;blessings&quot;))]\
@@ -1049,7 +1049,7 @@ There is an unattended snack stand next to the exit.
 (else:)[You stub your toe.
 
 (set: $HP to it - 5)\
-[[Onwards!|Main]]]</tw-passagedata><tw-passagedata pid="110" name="The End" tags="" position="2280,941">(if: $achievements contains &quot;Escape&quot; and not ($achievements contains &quot;Find the sub-dungeon&quot;))[On the other side of the door is a staircase. You can see daylight at the top of the stairs. You can see sheer blackness below.
+[[Onwards!|Main]]]</tw-passagedata><tw-passagedata pid="110" name="The End" tags="" position="2280,941">(if: $achievements contains &quot;Escape&quot;)[On the other side of the door is a staircase. You can see daylight at the top of the stairs. You can see sheer blackness below.
 
 [[Go up]]
 [[Go down]]]\
@@ -1082,7 +1082,7 @@ Happy birthday!
 (else-if: $satiety is $satietyOld + 1)[(replace: ?Satiety)[(color: #80e619)[$satiety]]]\
 (else-if: $satiety is $satietyOld + 2)[(replace: ?Satiety)[(color: #19e619)[$satiety]]]\
 (set: $HPOld to $HP)(set: $sanityOld to $sanity)(set: $energyOld to $energy)(set: $satietyOld to $satiety)\
-(if: $hp &gt;$statMax or $energy &gt; $statMax or $sanity &gt; $statMax or $satiety&gt; $statMax)[(stop:)]]\
+(if: $HP &gt; $statMax or $energy &gt; $statMax or $sanity &gt; $statMax or $satiety&gt; $statMax)[(stop:)]]\
 (set: $cards to it - (array: &quot;Blessed&quot;))\
 [[Leave now|Main]]</tw-passagedata><tw-passagedata pid="114" name="Tea Ceremony" tags="" position="2167,1696">Three dungeon slimes are holding a tea ceremony. They invite you to join them.
 
