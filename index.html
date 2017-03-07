@@ -126,7 +126,9 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 
 
 
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
 
 
 
@@ -838,7 +840,7 @@ It is titled *A Treatise on the Treachery of Crabs.* The handwriting is neat but
 (if: (random:1,175) is 6)[(set: $cards to it + (array: &quot;Candies&quot;))]\
 (if: (random:1,175) is 7)[(set: $cards to it + (array: &quot;tornado&quot;))]\
 (if: (random:1,175) is 8)[(set: $cards to it + (array: &quot;fairy&quot;))]\
-(if: (random:1,140) is 9)[(set: $cards to it + (array: &quot;hatFind&quot;))]\
+(if: (random:1,120) is 9)[(set: $cards to it + (array: &quot;hatFind&quot;))]\
 (if: (random:1,175) is 10)[(set: $cards to it + (array: &quot;Convention&quot;))]\
 (if: (random:1,175) is 1 and $turns &lt; 20)[(set: $cards to it + (array: &quot;deathDoor&quot;))]\
 (if: (random:1,75) is 1)[(set: $cards to it + (array: &quot;confide&quot;))]\
@@ -1443,7 +1445,7 @@ Happy birthday!
 
 And for a brief moment the vast stone dungeon seems nothing more than a house of leaves, moments before the wind.
 
-(set: $delayExecute to &quot;(set: $sanity to it - 15)&quot;)\
+(set: $delayExecute to &quot;(set: $sanity to it - 10)&quot;)\
 [[Shake off your malaise|Main]](if: $hats &gt; 0)[
 [[Throw a hat down the hole]]](if: $inklings &gt; 0 and $inklings &lt; 29)[
 (link: &quot;Go down the stairs&quot;)[(colour: &quot;#197fe6&quot;)[&#x27;&#x27;You need (text: 29 - $inklings) more Inklings of an Unfathomable Truth&#x27;&#x27;]]](else-if: $inklings &gt;=29)[
@@ -1484,17 +1486,17 @@ It is a small and nauseating meal.
 ](else:)[
 [[Wave the arrow threateningly]]]</tw-passagedata><tw-passagedata pid="174" name="green dragon" tags="" position="2803,163">It&#x27;s a green dragon! It has already spotted you. It looks like it&#x27;s about to strike.
 
-(set: $monster to (datamap: &quot;fleeChance&quot;, 20, &quot;damage&quot;, 20))\
+(set: $monster to (datamap: &quot;fleeChance&quot;, 25, &quot;damage&quot;, 20))\
 (display: &quot;monster&quot;)</tw-passagedata><tw-passagedata pid="175" name="white dragon" tags="" position="2872,318">It&#x27;s a white dragon!
 
 Or is it? Where you thought you saw the dragon is a blank wall. Are you seeing things?
 
-(set: $monster to (datamap: &quot;fleeChance&quot;, 30, &quot;damage&quot;, 25))\
+(set: $monster to (datamap: &quot;fleeChance&quot;, 30, &quot;damage&quot;, 20))\
 [[Proceed cautiously]]
 [[Proceed nonchalantly|Proceed cautiously]]
 [[Run away, just in case|Run]] *((if: ($monster&#x27;s fleeChance + $fleeBonus) &gt; 100)[100](elseif: $monster&#x27;s fleeChance + $fleeBonus &lt; 0)[0](else:)[(round: ($monster&#x27;s fleeChance + $fleeBonus))]% chance of success)*</tw-passagedata><tw-passagedata pid="176" name="Proceed cautiously" tags="" position="2886,456">Nothing happens. Did you imagine a dragon where there was none?
 
-(set: $sanity to it - 20)\
+(set: $sanity to it - 15)\
 [[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="177" name="Blessing of boundaries" tags="" position="2083,172">(set: $statMax to it + 25)\
 (set: $HP to it + 15)(set: $sanity to it + 15)(set: $energy to it + 15)(set: $satiety to it + 15)\
 Increases your health, sanity, energy and satiety, and also increases the maximum value they can reach without penalty to &#x27;&#x27;(print: $statMax)&#x27;&#x27;.
