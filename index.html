@@ -121,7 +121,9 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 
 
 
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
 
 
 
@@ -750,8 +752,11 @@ It is titled *A Treatise on the Treachery of Crabs.* The handwriting is neat but
 
 (font: &quot;Shadows Into Light&quot;)[The crabs are, and have always been, our enemies. Until we unite against them any one of us might be the next victim.]
 
+(if: $sanity &gt; 20)[While somebody less sane might be convinced by the note, you are not.] 
+
+]\
 [[Laugh]]
-[[Crumple it up]](if: $sanity &lt; 20)[(set: $s to (text-style: &quot;upside-down&quot;))
+[[Crumple it up]](if: $sanity &lt;= 20)[(set: $s to (text-style: &quot;upside-down&quot;))
 *[[Nod sagely and place the note in your pocket.]]*](if: $hunger &gt; 1)[
 [[Eat the note]]]</tw-passagedata><tw-passagedata pid="73" name="Laugh" tags="" position="1232,2039">You laugh until your sides hurt. The laughter wears you out, but it also does wonders for your mood.
 
@@ -1341,7 +1346,7 @@ Your pigeons&#x27; health is now (print: $ally&#x27;s health)%.
 (display: &quot;init&quot;)\
 (set: $keys to 2)\
 (set: $hats to 2)\
-(set: $sanity to 20)\
+(set: $sanity to 25)\
 (set: $blessings to it + (array: &quot;opening&quot;))</tw-passagedata><tw-passagedata pid="155" name="Eat the note" tags="" position="1099,2051">You feel much better now that you&#x27;ve put these things out of your mind and in to your stomach.
 
 (set: $satiety to it + 10)\
