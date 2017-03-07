@@ -122,7 +122,15 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 { color: #2471A3; }
 .visited:hover /* all visited hover links */
 { color: #2E86C1; }
+
+
+
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
+
+
+
 
 
 
@@ -363,7 +371,7 @@ $turns minutes]]\
 (replace: ?Sanity)[??]\
 (replace: ?Energy)[??]\
 (replace: ?Satiety)[??]]\
-(if: $strangeBrew is 1)[(live: 0.3s)[(if: (random: 1,6) is 6)[(set: $teaTally to it + 1)(set: $HP to it + 1)(replace: ?Health)[(color: lime)[$HP]]]]]]</tw-passagedata><tw-passagedata pid="4" name="Startup" tags="startup" position="125,83">(set: $inherit to false)\
+(if: $strangeBrew is 1)[(live: 0.3s)[(if: (random: 1,6) is 6)[(set: $teaTally to it + 1)(set: $HP to it + 1)(replace: ?Health)[(color: lime)[(if: $mushroomCooldown &gt; 0)[??](else:)[$HP]]]](else-if: $mushroomCooldown &gt; 0)[(replace: ?Health)[(color: grey)[??]]]]]]</tw-passagedata><tw-passagedata pid="4" name="Startup" tags="startup" position="125,83">(set: $inherit to false)\
 (set: $achievements to (array: &quot;&quot;))\
 (set: $achievementsOld to $achievements)\
 (set: $achievementCount to 0)</tw-passagedata><tw-passagedata pid="5" name="ghost" tags="" position="943,444">A spectral presence wafts down the passageway towards you. Blood drips from its mouth.
@@ -601,7 +609,7 @@ He pauses. A droplet of water falls from his nose and splashes into the puddle a
 
 (set: $inventory to it + (array: &quot;runners&quot;))\
 (set: $fleeBonus to it + 20)\
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="45" name="HPMax" tags="" position="1839.3333333333333,1485.3333333333333">Although you feel healthier than ever, the rest of you begins to suffer.
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="45" name="HPMax" tags="" position="1839,1485">Although you feel healthier than ever, the rest of you begins to suffer.
 
 *Careful! If any stat gets too high it may have a detrimental effect on the others.*
 
@@ -609,7 +617,7 @@ He pauses. A droplet of water falls from his nose and splashes into the puddle a
 (set: $sanity to it - 15)\
 (set: $energy to it - 15)\
 (set: $satiety to it - 15)\
-[[I understand|Main]]</tw-passagedata><tw-passagedata pid="46" name="sanityMax" tags="" position="1836,1600.3333333333333">Your mind feels clear and sharp, but the rest of you feels worse than ever.
+[[I understand|Main]]</tw-passagedata><tw-passagedata pid="46" name="sanityMax" tags="" position="1836,1600">Your mind feels clear and sharp, but the rest of you feels worse than ever.
 
 *Careful! If any stat gets too high it may have a detrimental effect on the others.*
 
@@ -617,7 +625,7 @@ He pauses. A droplet of water falls from his nose and splashes into the puddle a
 (set: $HP to it - 15)\
 (set: $energy to it - 15)\
 (set: $satiety to it - 15)\
-[[I understand|Main]]</tw-passagedata><tw-passagedata pid="47" name="satietyMax" tags="" position="1972.6666666666667,1503.6666666666667">While your hunger is finally sated, you are beginning to notice the ill effects of your diet.
+[[I understand|Main]]</tw-passagedata><tw-passagedata pid="47" name="satietyMax" tags="" position="1972,1503">While your hunger is finally sated, you are beginning to notice the ill effects of your diet.
 
 *Careful! If any stat gets too high it may have a detrimental effect on the others.*
 
@@ -625,7 +633,7 @@ He pauses. A droplet of water falls from his nose and splashes into the puddle a
 (set: $HP to it - 15)\
 (set: $energy to it - 15)\
 (set: $sanity to it - 15)\
-[[I understand|Main]]</tw-passagedata><tw-passagedata pid="48" name="energyMax" tags="" position="1958.6666666666667,1608">You are alert to the point of skittishness, but the rest of you feels worse than ever.
+[[I understand|Main]]</tw-passagedata><tw-passagedata pid="48" name="energyMax" tags="" position="1958,1608">You are alert to the point of skittishness, but the rest of you feels worse than ever.
 
 *Careful! If any stat gets too high it may have a detrimental effect on the others.*
 
@@ -703,7 +711,7 @@ The scent is bracing, in its own way. You feel alert and energised.
 
 (set: $HP to it - 10)\
 (set: $energy to it + 17)\
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="60" name="Rub it on your wounds." tags="" position="1527,1328.3333333333333">The jelly burns, but it also seems to help your wounds. The muscles stitch together and your skin regrows. Only it regrows strangely; you might not be hurt anymore, but these parts of your body feel rubbery and misshapen.
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="60" name="Rub it on your wounds." tags="" position="1527,1328">The jelly burns, but it also seems to help your wounds. The muscles stitch together and your skin regrows. Only it regrows strangely; you might not be hurt anymore, but these parts of your body feel rubbery and misshapen.
 
 (set: $HP to it + 15)\
 (set: $sanity to it - 10)\
@@ -722,7 +730,7 @@ It&#x27;s gone. You&#x27;ll never see this part of the dungeon again.
 (set: $satiety to it + (random: 10, 30))\
 You are less hungry. But the glass sits uncomfortably in your stomach.
 
-[[Was that wise?|Main]]</tw-passagedata><tw-passagedata pid="64" name="No. Don&#x27;t do any of those things." tags="" position="1653,1337.3333333333335">(set: $sanity to it + 5)\
+[[Was that wise?|Main]]</tw-passagedata><tw-passagedata pid="64" name="No. Don&#x27;t do any of those things." tags="" position="1653,1337">(set: $sanity to it + 5)\
 [[That&#x27;s probably wise.|Main]]</tw-passagedata><tw-passagedata pid="65" name="monsters1" tags="" position="1287,936">It&#x27;s an elemental elephant! It attacks using carbon, hydrogen, nitrogen and oxygen.
 
 (set: $monster to (datamap: &quot;fleeChance&quot;, 78, &quot;damage&quot;, 23))\
@@ -821,7 +829,8 @@ It is titled *A Treatise on the Treachery of Crabs.* The handwriting is neat but
 (if: $saveTimer &gt; 0)[(set: $saveTimer to it - 1)]\
 (else:)[(set: $cards to it + (array: &quot;saveGame&quot;))(set: $saveTimer to -10)]\
 (if: $sanity &gt;=25)[(set: $cards to it - (array: &quot;debugMenagerie&quot;))]\
-(if: (random:1,175) is 1)[(set: $cards to it + (array: &quot;pirates&quot;))]\
+(if: (random:1,175) is 1 and ($HP + $sanity + $energy + $satiety) &gt; 190)[(set: $cards to it + (array: &quot;pirates&quot;))]\
+(if: $cards contains &quot;pirates&quot; and ($HP + $sanity + $energy + $satiety) &lt; 120)[(set: $cards to it - (array: &quot;pirates&quot;))]\
 (if: (random:1,175) is 2)[(set: $cards to it + (array: &quot;keyFind&quot;))]\
 (if: (random:1,175) is 3)[(set: $cards to it + (array: &quot;jargo&quot;))]\
 (if: (random:1,175) is 4)[(set: $cards to it + (array: &quot;bibleopoly&quot;))]\
@@ -1358,6 +1367,7 @@ When you wake you find a note thanking you for your donation and a key placed on
 (display: &quot;init&quot;)\
 (set: $keys to 2)\
 (set: $hats to 2)\
+(set: $mushroomCooldown to 50)\
 (set: $blessings to it + (array: &quot;opening&quot;))</tw-passagedata><tw-passagedata pid="155" name="Eat the note" tags="" position="1099,2051">You feel much better now that you&#x27;ve put these things out of your mind and in to your stomach.
 
 (set: $satiety to it + 10)\
@@ -1907,9 +1917,9 @@ By the time you finish your pulse is thready and your breath is haggard. You are
 [[Pretend to be one of them]]</tw-passagedata><tw-passagedata pid="260" name="Walk rapidly away" tags="" position="2259,2657">You make your exit before any of them notice you.
 
 (set: $energy to it - 6)\
-[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="261" name="Pretend to be one of them" tags="" position="2409,2657">You flop your arms like tentacles and make squiddy noises as you pass through the crowd.
+[[Onwards!|Main]]</tw-passagedata><tw-passagedata pid="261" name="Pretend to be one of them" tags="" position="2409,2657">You flop your arms like tentacles and make squiddy noises as you move through the crowd.
 
-Some watch you with blank fishy eyes as you walk. Your heart beats violently. Have they noticed you?
+Some watch you with pelagic eyes as you walk past. You sweat profusely. Your heart hammers in your chest. Have they noticed you?
 
 They haven&#x27;t. Nobody suspects a thing. You&#x27;ve pulled it off.
 
@@ -1930,7 +1940,7 @@ The way it moves is repulsive and a little unnerving.
 
 (set: $sanity to it - 10)\
 (set: $cards to it + (array: &quot;slimeGift&quot;))\
-[[What have you released?|Main]]</tw-passagedata><tw-passagedata pid="266" name="slimeGift" tags="" position="1605.8333333333333,1489.4696510672259">Somebody or something has left a gift on the dungeon floor. The wrapping has been inexpertly applied, and the whole thing is coated with a sticky gelatinous membrane.
+[[What have you released?|Main]]</tw-passagedata><tw-passagedata pid="266" name="slimeGift" tags="" position="1605,1489">Somebody or something has left a gift on the dungeon floor. The wrapping has been inexpertly applied, and the whole thing is coated with a sticky gelatinous membrane.
 
 (set: $cards to it - (array: &quot;slimeGift&quot;))\
 (set: $gift to (array: &quot;[[The gift of health]]&quot;,&quot;[[The gift of lucidity]]&quot;,&quot;[[The gift of energy]]&quot;,&quot;[[The gift of chocolate]]&quot;,
