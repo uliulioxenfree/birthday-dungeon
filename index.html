@@ -127,7 +127,9 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 
 
 
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
 
 
 
@@ -283,7 +285,7 @@ A nearby sign lists the accomplishments of those who have entered the dungeon be
 (set: $untouchables to (array: &quot;couch&quot;, &quot;peckishCure&quot;, &quot;debugMenagerie&quot;, &quot;ethicsTome&quot;, &quot;pirates&quot;, &quot;Blessed&quot;, &quot;headband&quot;, &quot;blessings&quot;, &quot;saveGame&quot;, &quot;keyFind&quot;, &quot;Painting&quot;, &quot;Candies&quot;, &quot;tornado&quot;, &quot;confide&quot;, &quot;bibleopoly&quot;, &quot;sergeGuide&quot;, &quot;fairy&quot;, &quot;hole&quot;, &quot;deathDoor&quot;, &quot;Convention&quot;, &quot;hatFind&quot;, &quot;demon&quot;, &quot;jargo&quot;, &quot;strangeBrew&quot;))\
 (set: $tiles to (shuffled: ...(array: &quot;The Bulging Eggplant&quot;, &quot;The Red Giraffe&quot;, &quot;The Quivering Squid&quot;, &quot;The Gas Mask&quot;, &quot;The North Wind&quot;, &quot;The East Wind&quot;, &quot;The West Wind&quot;, &quot;The South Wind&quot;)))\
 (set: $safeTiles to (array: $tiles&#x27;s 1st) + (array: $tiles&#x27;s 2nd) + (array: $tiles&#x27;s 3rd))\
-(if: $achievements contains &quot;Escape&quot; and not ($achievements contains &quot;Find the sub-dungeon&quot;))[(set: $cards to it + (array: &quot;descentNote&quot;))]\
+(if: $achievements contains &quot;Escape&quot;)[(set: $cards to it + (array: &quot;descentNote&quot;))]\
 [[Descend.|Main]]
 (if: $achievements is not (array: &quot;&quot;))[[[Read of your predecessors&#x27; achievements.|Achievements]]]</tw-passagedata><tw-passagedata pid="2" name="Main" tags="" position="630,812">(display: &quot;updates&quot;)\
 (if: $cards&#x27;s 1st is $card)[(set: $card to $cards&#x27;s 2nd)]\
