@@ -129,7 +129,11 @@ tw-link:hover, enchantment-link:hover /* sets both hover link colors */
 
 
 
+
+
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+
+
 
 
 
@@ -373,6 +377,7 @@ $turns minutes]]\
 (replace: ?Sanity)[(color: white)[$sanity]]\
 (replace: ?Energy)[(color: white)[$energy]]\
 (replace: ?Satiety)[(color: white)[$satiety]]]\
+(if: (passage:)&#x27;s name is &quot;trueInit&quot;)[&lt;audio src=&quot;dungeonTune.wav&quot; autoplay&gt;]\
 (if: $mushroomCooldown &gt; 0)[(replace: ?Health)[??]\
 (replace: ?Sanity)[??]\
 (replace: ?Energy)[??]\
@@ -1404,11 +1409,12 @@ When you wake you find a note thanking you for your donation and a key placed on
 </tw-passagedata><tw-passagedata pid="159" name="Eat his hand" tags="" position="649,1676">You override his objections. After all, this might be the last time you get to do something like this.
 
 (set: $satiety to it + 5)\
-[[Delicious.|exit]]</tw-passagedata><tw-passagedata pid="160" name="You have **$keys** keys]&lt;keyCount|" tags="" position="0,236">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="161" name="trueInit" tags="hide-sidebar achievements" position="625,579">(if: (saved-games:) contains &quot;Slot A&quot;)[Save file found.
+[[Delicious.|exit]]</tw-passagedata><tw-passagedata pid="160" name="You have **$keys** keys]&lt;keyCount|" tags="" position="0,236">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="161" name="trueInit" tags="hide-sidebar achievements" position="625,579">&lt;h3&gt;The Birthday Dungeon&lt;/h3&gt;
+(if: (saved-games:) contains &quot;Slot A&quot;)[Save file found.
 
 (link: &quot;Restore progress&quot;)[(go-to: &quot;savedInit&quot;)]
 [[Erase progress and start again|init]]]
-(else:)[(go-to: &quot;init&quot;)]</tw-passagedata><tw-passagedata pid="162" name="mushrooms" tags="" position="2869,716">The room drips with moisture and smells of soil. Luminous mushrooms have sprouted from the floor.
+(else:)[(link: &quot;Begin.&quot;)[(go-to: &quot;init&quot;)]]</tw-passagedata><tw-passagedata pid="162" name="mushrooms" tags="" position="2869,716">The room drips with moisture and smells of soil. Luminous mushrooms have sprouted from the floor.
 
 [[Eat the mushrooms]]
 (if: $ally&#x27;s type is &quot;pigeons&quot;)[[[Encourage your pigeons to eat the mushrooms|Allow your pigeons to feed.]]
@@ -1961,7 +1967,7 @@ The way it moves is repulsive and a little unnerving.
 (if: not ($inventory contains &quot;runners&quot;))[(set: $gift to it + (array: &quot;[[New runners]]&quot;))]\
 (if: not ($inventory contains &quot;socks&quot;))[(set: $gift to it + (array: &quot;[[Running socks]]&quot;))]\
 (set: $gift to (shuffled: ...$gift))\
-[[What&#x27;s inside?|(print: 1st of $gift)]]</tw-passagedata><tw-passagedata pid="267" name="Wave a tentacle in greeting" tags="" position="2329,2800.3333333333335">They wave back. And why not? You are one of them now.
+[[What&#x27;s inside?|(print: 1st of $gift)]]</tw-passagedata><tw-passagedata pid="267" name="Wave a tentacle in greeting" tags="" position="2329,2800">They wave back. And why not? You are one of them now.
 
 [[Onwards!|Main]]</tw-passagedata></tw-storydata>
 
