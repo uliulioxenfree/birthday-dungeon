@@ -379,6 +379,7 @@ $turns minutes]]\
 (replace: ?Satiety)[(color: white)[$satiety]]]\
 (if: (passage:)&#x27;s name is &quot;trueInit&quot;)[&lt;audio src=&quot;dungeonTune.wav&quot; autoplay&gt;]\
 (if: (passage:)&#x27;s name is &quot;TrueEnd2&quot;)[&lt;audio src=&quot;birthdayEnd.wav&quot; autoplay&gt;]\
+(if: (passage:)&#x27;s name is &quot;You are insane&quot; or (passage:)&#x27;s name is &quot;You are dead&quot;)[&lt;audio src=&quot;sadEnd.wav&quot; autoplay&gt;]\
 (if: $mushroomCooldown &gt; 0)[(replace: ?Health)[??]\
 (replace: ?Sanity)[??]\
 (replace: ?Energy)[??]\
@@ -561,7 +562,7 @@ By the time it finishes you feel healthier, though also horrified.
 (set: $HP to it + 15)\
 (set: $sanity to it - 8)\
 (if: $ghostFriend is 3)[(set: $ghostFriend to 4)]\
-[[Seems fair|Main]]</tw-passagedata><tw-passagedata pid="34" name="You are dead" tags="" position="126,1252">You are dead. This has been a disappointing birthday.
+[[Seems fair|Main]]</tw-passagedata><tw-passagedata pid="34" name="You are dead" tags="" position="118,1243">You are dead. This has been a disappointing birthday.
 
 (if: $ankh is 1 and not ($descension &gt; 1))[Fortunately, you have something that can help in situations such as these.
 
